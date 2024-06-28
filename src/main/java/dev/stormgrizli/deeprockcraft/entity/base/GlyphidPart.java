@@ -19,8 +19,9 @@ public class GlyphidPart extends PartEntity<GlyphidBaseEntity> {
     public float renderYawOffset;
     public float prevRenderYawOffset;
     protected EntityDimensions realSize = EntityDimensions.fixed(0.8F, 0.5F);
-    public GlyphidPart(Entity parent, Vec3 offset) {
-        super((GlyphidBaseEntity) parent);
+
+    public GlyphidPart(GlyphidBaseEntity parent, Vec3 offset) {
+        super(parent);
         this.setPos(offset);
     }
     public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements) {
