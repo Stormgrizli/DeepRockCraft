@@ -16,9 +16,6 @@ public class GlyphidGruntEntity extends GlyphidBaseEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0,new FloatGoal(this));
-        this.addBehaviourGoals();
-    }
-    protected void addBehaviourGoals() {
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this,0.8, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
     }

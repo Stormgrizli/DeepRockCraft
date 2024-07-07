@@ -14,6 +14,8 @@ import org.jetbrains.annotations.Nullable;
 public abstract class GlyphidBaseEntity extends PathfinderMob {
     private final GlyphidPart FrontPart;
     private final GlyphidPart BackPart;
+    private final GlyphidPart BackPart2;
+
     private final GlyphidBaseEntity GlyphidBase = this;
 
     protected GlyphidBaseEntity(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
@@ -21,6 +23,7 @@ public abstract class GlyphidBaseEntity extends PathfinderMob {
 
         FrontPart  = new GlyphidPart(GlyphidBase,new Vec3(GlyphidBase.getX()+1, GlyphidBase.getY(), GlyphidBase.getZ()));
         BackPart   = new GlyphidPart(GlyphidBase,new Vec3(GlyphidBase.getX()-1, GlyphidBase.getY(), GlyphidBase.getZ()));
+        BackPart2   = new GlyphidPart(GlyphidBase,new Vec3(GlyphidBase.getX()-1.5, GlyphidBase.getY()+0.5, GlyphidBase.getZ()));
     }
     @Override
     public void tick() {
@@ -34,21 +37,28 @@ public abstract class GlyphidBaseEntity extends PathfinderMob {
 
         this.FrontPart.tick();
         this.BackPart.tick();
+        this.BackPart2.tick();
+
 
         float angle;
         double dx, dy, dz;
 
         angle = (((this.yBodyRot + 180.0F) * Mth.PI) / 180.0F);
 
-        dx = this.getX() - Mth.sin(angle) * 1D;
-        dy = this.getY();
-        dz = this.getZ() + Mth.cos(angle) * 1D;
+        dx = this.getX() - Mth.sin(angle) * - 0.5D;
+        dy = this.getY()+ 0.4D;
+        dz = this.getZ() + Mth.cos(angle) * - 0.5D;
         this.FrontPart.setPos(dx, dy, dz);
 
-        dx = this.getX() - Mth.sin(angle) * - 1D;
+        dx = this.getX() - Mth.sin(angle) * 0.5D;
         dy = this.getY()+ 0.5D;
-        dz = this.getZ() + Mth.cos(angle) * - 1D;
+        dz = this.getZ() + Mth.cos(angle) * 0.5D;
         this.BackPart.setPos(dx, dy, dz);
+
+        dx = this.getX() - Mth.sin(angle) * 1.0D;
+        dy = this.getY()+ 1D;
+        dz = this.getZ() + Mth.cos(angle) * 1.0D;
+        this.BackPart2.setPos(dx, dy, dz);
 
 
     }
@@ -61,7 +71,7 @@ public abstract class GlyphidBaseEntity extends PathfinderMob {
     @Nullable
     @Override
     public PartEntity<?>[] getParts() {
-        return new GlyphidPart[]{FrontPart,BackPart};
+        return new GlyphidPart[]{FrontPart,BackPart,BackPart2};
     }
 
     @Override
@@ -70,6 +80,8 @@ public abstract class GlyphidBaseEntity extends PathfinderMob {
         if (this.level() instanceof ServerLevel) {
             FrontPart.kill();
             BackPart.kill();
+            BackPart2.kill();
+
         }
     }
     @Override

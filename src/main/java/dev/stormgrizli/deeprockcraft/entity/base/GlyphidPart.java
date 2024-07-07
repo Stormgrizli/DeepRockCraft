@@ -2,60 +2,41 @@ package dev.stormgrizli.deeprockcraft.entity.base;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.entity.PartEntity;
 
 import java.util.Objects;
 
 public class GlyphidPart extends PartEntity<GlyphidBaseEntity> {
-    protected int newPosRotationIncrements;
-    protected double interpTargetX;
-    protected double interpTargetY;
-    protected double interpTargetZ;
-    protected double interpTargetYaw;
-    protected double interpTargetPitch;
-    public float renderYawOffset;
-    public float prevRenderYawOffset;
-    protected EntityDimensions realSize = EntityDimensions.fixed(0.8F, 0.5F);
+    private GlyphidBaseEntity parent;
+    protected EntityDimensions realSize = EntityDimensions.fixed(0.5F, 0.5F);
 
     public GlyphidPart(GlyphidBaseEntity parent, Vec3 offset) {
         super(parent);
         this.setPos(offset);
+        this.refreshDimensions();
+        this.parent = parent;
     }
-    public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements) {
-        this.interpTargetX = x;
-        this.interpTargetY = y;
-        this.interpTargetZ = z;
-        this.interpTargetYaw = yaw;
-        this.interpTargetPitch = pitch;
-        this.newPosRotationIncrements = posRotationIncrements;
+
+    public ItemStack getPickResult() {
+        return this.parent.getPickResult();
     }
+
+    @Override
+    public boolean isPickable() {
+        return true;
+    }
+
     @Override
     public void tick() {
         updateLastPos();
         super.tick();
-        if (this.newPosRotationIncrements > 0) {
-            double d0 = this.getX() + (this.interpTargetX - this.getX()) / (double) this.newPosRotationIncrements;
-            double d2 = this.getY() + (this.interpTargetY - this.getY()) / (double) this.newPosRotationIncrements;
-            double d4 = this.getZ() + (this.interpTargetZ - this.getZ()) / (double) this.newPosRotationIncrements;
-            double d6 = Mth.wrapDegrees(this.interpTargetYaw - (double) this.getYRot());
-            this.setYRot((float) ((double) this.getYRot() + d6 / (double) this.newPosRotationIncrements));
-            this.setXRot((float) ((double) this.getXRot() + (this.interpTargetPitch - (double) this.getXRot()) / (double) this.newPosRotationIncrements));
-            --this.newPosRotationIncrements;
-            this.setPos(d0, d2, d4);
-            this.setRot(this.getYRot(), this.getXRot());
-        }
-
-        while (getYRot() - this.yRotO < -180F) this.yRotO -= 360F;
-        while (getYRot() - this.yRotO >= 180F) this.yRotO += 360F;
-
-        while (this.renderYawOffset - this.prevRenderYawOffset < -180F) this.prevRenderYawOffset -= 360F;
-        while (this.renderYawOffset - this.prevRenderYawOffset >= 180F) this.prevRenderYawOffset += 360F;
-
-        while (getXRot() - this.xRotO < -180F) this.xRotO -= 360F;
-        while (getXRot() - this.xRotO >= 180F) this.xRotO += 360F;
     }
 
     public final void updateLastPos() {
@@ -85,6 +66,14 @@ public class GlyphidPart extends PartEntity<GlyphidBaseEntity> {
             PartEntity<?> part = parts[i];
             part.setId(parent.getId() + i);
         }
+    }
+    @Override
+    public EntityDimensions getDimensions(Pose pose) {
+        return this.realSize;
+    }
+    @Override
+    public boolean hurt(DamageSource src, float damage) {
+        return !this.isInvisible() && this.getParent().hurt(src, damage * 10.0F);
     }
     protected void setSize(EntityDimensions size) {
         this.realSize = size;

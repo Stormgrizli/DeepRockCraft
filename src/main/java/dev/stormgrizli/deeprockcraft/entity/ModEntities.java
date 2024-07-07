@@ -17,7 +17,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<GlyphidGruntEntity>> GRYPHID_GRUNT =
             ENTITY_TYPES.register("glyphid_grunt", () -> EntityType.Builder.of(GlyphidGruntEntity::new, MobCategory.CREATURE)
-                    .sized(1f, 1f).build("glyphid_grunt"));
+                    .sized(0.7f, 1f).build("glyphid_grunt"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

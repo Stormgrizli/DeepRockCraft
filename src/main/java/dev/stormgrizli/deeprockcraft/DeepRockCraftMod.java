@@ -2,8 +2,10 @@ package dev.stormgrizli.deeprockcraft;
 
 
 import com.mojang.logging.LogUtils;
+import dev.stormgrizli.deeprockcraft.block.ModBlocks;
 import dev.stormgrizli.deeprockcraft.entity.ModEntities;
 import dev.stormgrizli.deeprockcraft.entity.renderer.GlyphidGruntRenderer;
+import dev.stormgrizli.deeprockcraft.item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,6 +33,8 @@ public class DeepRockCraftMod {
         ModEntities.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
+        ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
         modEventBus.addListener(this::addCreative);
     }
 

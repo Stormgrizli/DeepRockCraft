@@ -1,0 +1,226 @@
+{
+  "variants": {
+    "north=false,south=false,east=false,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_c"
+    },
+    "north=true,south=true,east=true,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_block"
+    },
+    "down=true,north=false,south=false,east=false,west=false,up=false": {
+      "model": "deeprockcraft:block/nitra_dw"
+    },
+    "down=false,north=false,south=false,east=false,west=false,up=true": {
+      "model": "deeprockcraft:block/nitra_up"
+    },
+    "north=true,down=true,south=false,east=false,west=false,up=false": {
+      "model": "deeprockcraft:block/nitra_dwn"
+    },
+    "north=true,west=true,down=true,south=false,east=false,up=false,": {
+      "model": "deeprockcraft:block/nitra_dwnw"
+    },
+    "north=true,south=false,east=false,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_n",
+      "y": 0
+    },
+    "north=false,south=true,east=false,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_n",
+      "y": 180
+    },
+    "north=false,south=false,east=true,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_n",
+      "y": 90
+    },
+    "north=false,south=false,east=false,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_n",
+      "y": 270
+    },
+    "north=true,south=true,east=false,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nsw",
+      "y": 0
+    },
+    "north=true,south=true,east=true,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nsw",
+      "y": 180
+    },
+    "north=true,south=true,east=true,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nswe",
+      "y": 0
+    },
+    "north=true,south=false,east=false,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nw",
+      "y": 0
+    },
+    "north=false,south=true,east=false,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nw",
+      "y": 270
+    },
+    "north=false,south=true,east=true,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nw",
+      "y": 180
+    },
+    "north=true,south=false,east=true,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nw",
+      "y": 90
+    },
+    "north=true,south=true,east=false,west=false,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_ns",
+      "y": 0
+    },
+    "north=false,south=false,east=true,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_ns",
+      "y": 90
+    },
+    "north=true,south=false,east=false,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnw",
+      "y": 0
+    },
+    "north=false,south=true,east=true,west=false,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnw",
+      "y": 180
+    },
+    "north=true,south=false,east=false,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwn",
+      "y": 0
+    },
+    "north=false,south=true,east=false,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwn",
+      "y": 180
+    },
+    "north=false,south=false,east=true,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwn",
+      "y": 90
+    },
+    "north=false,south=false,east=false,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwn",
+      "y": 270
+    },
+    "north=true,south=true,east=false,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwns",
+      "y": 0
+    },
+    "north=false,south=false,east=true,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwns",
+      "y": 90
+    },
+    "north=true,south=false,east=false,west=false,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upn",
+      "y": 0
+    },
+    "north=false,south=false,east=true,west=false,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upn",
+      "y": 90
+    },
+    "north=false,south=true,east=false,west=false,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upn",
+      "y": 180
+    },
+    "north=false,south=false,east=false,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upn",
+      "y": 270
+    },
+    "north=true,south=true,east=false,west=false,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upns",
+      "y": 0
+    },
+    "north=false,south=false,east=true,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upns",
+      "y": 90
+    },
+    "north=true,south=false,east=false,west=false,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwn",
+      "y": 0
+    },
+    "north=false,south=true,east=false,west=false,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwn",
+      "y": 180
+    },
+    "north=false,south=false,east=true,west=false,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwn",
+      "y": 90
+    },
+    "north=false,south=false,east=false,west=true,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwn",
+      "y": 270
+    },
+    "north=true,south=true,east=false,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnsw",
+      "y": 0
+    },
+    "north=true,south=true,east=true,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnsw",
+      "y": 180
+    },
+    "north=true,south=false,east=true,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnsw",
+      "y": 90
+    },
+    "north=false,south=true,east=true,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnsw",
+      "y": 270
+    },
+    "north=false,south=true,east=false,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnw",
+      "y": 0
+    },
+    "north=true,south=false,east=true,west=false,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnw",
+      "y": 180
+    },
+    "north=true,south=true,east=false,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnsw",
+      "y": 0
+    },
+    "north=true,south=true,east=true,west=false,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnsw",
+      "y": 180
+    },
+    "north=false,south=true,east=true,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnsw",
+      "y": 270
+    },
+    "north=true,south=false,east=true,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnsw",
+      "y": 90
+    },
+    "north=true,south=true,east=true,west=true,up=true,down=false": {
+      "model": "deeprockcraft:block/nitra_upnswe",
+      "y": 0
+    },
+    "north=false,south=true,east=false,west=true,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwnw",
+      "y": 0
+    },
+    "north=true,south=false,east=true,west=false,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwnw",
+      "y": 180
+    },
+    "north=true,south=true,east=false,west=true,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwnsw",
+      "y": 0
+    },
+    "north=true,south=true,east=true,west=false,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwnsw",
+      "y": 180
+    },
+    "north=false,south=true,east=true,west=true,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwnsw",
+      "y": 270
+    },
+    "north=true,south=false,east=true,west=true,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwnsw",
+      "y": 90
+    },
+    "north=true,south=true,east=true,west=true,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwnswe",
+      "y": 0
+    },
+    "north=true,south=true,east=false,west=false,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwns",
+      "y": 0
+    },
+    "north=false,south=false,east=true,west=true,up=false,down=true": {
+      "model": "deeprockcraft:block/nitra_dwns",
+      "y": 90
+    }
+  }
+}
