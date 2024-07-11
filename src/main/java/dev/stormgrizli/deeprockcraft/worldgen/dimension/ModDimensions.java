@@ -21,7 +21,7 @@ import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import java.util.List;
 import java.util.OptionalLong;
 
-public class ModDimensions {
+public class ModDimensions { /*
     public static final ResourceKey<LevelStem> DRG_KEY = ResourceKey.create(Registries.LEVEL_STEM,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "drgdim"));
     public static final ResourceKey<Level> DRG_LEVEL_KEY = ResourceKey.create(Registries.DIMENSION,
@@ -59,8 +59,6 @@ public class ModDimensions {
         NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(
                 MultiNoiseBiomeSource.createFromList(
                         new Climate.ParameterList<>(List.of(Pair.of(
-                                        Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.SALT_PITS)),
-                                Pair.of(
                                         Climate.parameters(0.1F, 0.2F, 0.0F, 0.2F, 1.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.DEEP_DARK)),
                                 Pair.of(
                                         Climate.parameters(0.3F, 0.6F, 0.1F, 0.1F, 0.5F, 0.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.LUSH_CAVES)),
@@ -74,4 +72,5 @@ public class ModDimensions {
 
         context.register(DRG_KEY, stem);
     }
+    */
 }

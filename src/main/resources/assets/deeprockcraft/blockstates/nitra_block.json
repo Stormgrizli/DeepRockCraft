@@ -221,6 +221,10 @@
     "north=false,south=false,east=true,west=true,up=false,down=true": {
       "model": "deeprockcraft:block/nitra_dwns",
       "y": 90
+    },
+    "north=false,south=false,east=false,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updw",
+      "y": 0
     }
   }
 }
