@@ -1,6 +1,6 @@
 package dev.stormgrizli.deeprockcraft.worldgen.dimension;
 
-import com.ibm.icu.impl.Pair;
+import com.mojang.datafixers.util.Pair;
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
 import dev.stormgrizli.deeprockcraft.worldgen.biome.ModBiomes;
 import net.minecraft.core.HolderGetter;
@@ -21,13 +21,15 @@ import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import java.util.List;
 import java.util.OptionalLong;
 
-public class ModDimensions { /*
+public class ModDimensions {
     public static final ResourceKey<LevelStem> DRG_KEY = ResourceKey.create(Registries.LEVEL_STEM,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "drgdim"));
     public static final ResourceKey<Level> DRG_LEVEL_KEY = ResourceKey.create(Registries.DIMENSION,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "drgdim"));
     public static final ResourceKey<DimensionType> DRG_DIM_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "drg_type"));
+
+
     public static void bootstrapType(BootstapContext<DimensionType> context) {
         context.register(DRG_DIM_TYPE, new DimensionType(
                 OptionalLong.of(12000), // fixedTime
@@ -36,14 +38,14 @@ public class ModDimensions { /*
                 false, // ultraWarm
                 false, // natural
                 1.0, // coordinateScale
-                true, // bedWorks
+                false, // bedWorks
                 false, // respawnAnchorWorks
                 0, // minY
                 256, // height
-                256, // logicalHeight
+                100, // logicalHeight
                 BlockTags.INFINIBURN_OVERWORLD, // infiniburn
                 BuiltinDimensionTypes.OVERWORLD_EFFECTS, // effectsLocation
-                1.0f, // ambientLight
+                0.0f, // ambientLight
                 new DimensionType.MonsterSettings(false, false, ConstantInt.of(0), 0)));
     }
 
@@ -58,13 +60,12 @@ public class ModDimensions { /*
 
         NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(
                 MultiNoiseBiomeSource.createFromList(
-                        new Climate.ParameterList<>(List.of(Pair.of(
-                                        Climate.parameters(0.1F, 0.2F, 0.0F, 0.2F, 1.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.DEEP_DARK)),
-                                Pair.of(
-                                        Climate.parameters(0.3F, 0.6F, 0.1F, 0.1F, 0.5F, 0.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.LUSH_CAVES)),
-                                Pair.of(
-                                        Climate.parameters(0.4F, 0.3F, 0.2F, 0.1F, 0.8F, 1.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.DRIPSTONE_CAVES))
-
+                        new Climate.ParameterList<>(List.of(com.mojang.datafixers.util.Pair.of(
+                                        Climate.parameters(0.3F, -0.4F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.SALT_PITS)),
+                                com.mojang.datafixers.util.Pair.of(
+                                        Climate.parameters(0.0F, -0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.LUSH_CAVES)),
+                                com.mojang.datafixers.util.Pair.of(
+                                        Climate.parameters(-0.5F, -0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.175F), biomeRegistry.getOrThrow(Biomes.DEEP_DARK))
                         ))),
                 noiseGenSettings.getOrThrow(NoiseGeneratorSettings.AMPLIFIED));
 
@@ -72,5 +73,4 @@ public class ModDimensions { /*
 
         context.register(DRG_KEY, stem);
     }
-    */
 }

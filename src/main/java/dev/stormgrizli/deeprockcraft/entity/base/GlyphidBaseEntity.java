@@ -31,7 +31,6 @@ public abstract class GlyphidBaseEntity extends PathfinderMob {
 
         this.moveSegments();
         super.tick();
-        //yHeadRot= yBodyRot;
     }
     private void moveSegments() {
 

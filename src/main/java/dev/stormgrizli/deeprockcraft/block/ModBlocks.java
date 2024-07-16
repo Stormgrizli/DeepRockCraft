@@ -1,6 +1,7 @@
 package dev.stormgrizli.deeprockcraft.block;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
+import dev.stormgrizli.deeprockcraft.block.custom.ModPortalBlock;
 import dev.stormgrizli.deeprockcraft.block.custom.NitraBlock;
 import dev.stormgrizli.deeprockcraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -30,5 +31,7 @@ public class ModBlocks {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
     public static final RegistryObject<Block> NITRA_BLOCK = registerBlock("nitra_block",
-            () -> new NitraBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK)));
+            () -> new NitraBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).strength(1).noOcclusion().lightLevel(value -> 8)));
+    public static final RegistryObject<Block> MOD_PORTAL = registerBlock("mod_portal",
+            () -> new ModPortalBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable().noOcclusion().noCollission()));
 }

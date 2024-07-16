@@ -98,10 +98,6 @@
       "model": "deeprockcraft:block/nitra_updwns",
       "y": 0
     },
-    "north=false,south=false,east=true,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwns",
-      "y": 90
-    },
     "north=true,south=false,east=false,west=false,up=true,down=false": {
       "model": "deeprockcraft:block/nitra_upn",
       "y": 0
@@ -160,11 +156,11 @@
     },
     "north=false,south=true,east=false,west=true,up=true,down=false": {
       "model": "deeprockcraft:block/nitra_upnw",
-      "y": 0
+      "y": 270
     },
     "north=true,south=false,east=true,west=false,up=true,down=false": {
       "model": "deeprockcraft:block/nitra_upnw",
-      "y": 180
+      "y": 90
     },
     "north=true,south=true,east=false,west=true,up=true,down=false": {
       "model": "deeprockcraft:block/nitra_upnsw",
@@ -188,7 +184,7 @@
     },
     "north=false,south=true,east=false,west=true,up=false,down=true": {
       "model": "deeprockcraft:block/nitra_dwnw",
-      "y": 0
+      "y": 270
     },
     "north=true,south=false,east=true,west=false,up=false,down=true": {
       "model": "deeprockcraft:block/nitra_dwnw",
@@ -225,6 +221,30 @@
     "north=false,south=false,east=false,west=false,up=true,down=true": {
       "model": "deeprockcraft:block/nitra_updw",
       "y": 0
+    },
+    "north=true,south=false,east=false,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnw",
+      "y": 0
+    },
+    "north=false,south=true,east=false,west=true,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnw",
+      "y": 270
+    },
+    "north=false,south=true,east=true,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnw",
+      "y": 180
+    },
+    "north=true,south=false,east=true,west=false,up=true,down=true": {
+      "model": "deeprockcraft:block/nitra_updwnw",
+      "y": 90
+    },
+    "north=false,south=true,east=true,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nsw",
+      "y": 270
+    },
+    "north=true,south=false,east=true,west=true,up=false,down=false": {
+      "model": "deeprockcraft:block/nitra_nsw",
+      "y": 90
     }
   }
 }
