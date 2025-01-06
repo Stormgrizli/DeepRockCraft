@@ -24,6 +24,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         this.add(ModBlocks.NITRA_BLOCK.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.NITRA_BLOCK.get(), ModItems.NITRA_ORE.get()));
+        this.dropSelf(ModBlocks.RED_SALT.get());
     }
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
         return createSilkTouchDispatchTable(pBlock,

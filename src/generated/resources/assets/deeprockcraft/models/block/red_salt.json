@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "deeprockcraft:block/redsalt/red_salt_dw",
+    "east": "deeprockcraft:block/redsalt/red_salt_e",
+    "north": "deeprockcraft:block/redsalt/red_salt_n",
+    "south": "deeprockcraft:block/redsalt/red_salt_s",
+    "up": "deeprockcraft:block/redsalt/red_salt_up",
+    "west": "deeprockcraft:block/redsalt/red_salt_w"
+  }
+}

@@ -6,8 +6,7 @@ import dev.stormgrizli.deeprockcraft.block.custom.NitraBlock;
 import dev.stormgrizli.deeprockcraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,4 +33,6 @@ public class ModBlocks {
             () -> new NitraBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).strength(1).noOcclusion().lightLevel(value -> 8)));
     public static final RegistryObject<Block> MOD_PORTAL = registerBlock("mod_portal",
             () -> new ModPortalBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable().noOcclusion().noCollission()));
+    public static final RegistryObject<Block> RED_SALT = registerBlock("red_salt",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 }

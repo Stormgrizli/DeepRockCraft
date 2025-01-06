@@ -11,6 +11,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static net.minecraft.data.models.model.TextureMapping.cube;
+
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, DeepRockCraftMod.MOD_ID, exFileHelper);
@@ -19,6 +21,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.MOD_PORTAL);
+        simpleBlockWithItem(ModBlocks.RED_SALT.get(),
+                models().cube(name(ModBlocks.RED_SALT.get()),
+                        modLoc("block/redsalt/red_salt_dw"),
+                        modLoc("block/redsalt/red_salt_up"),
+                        modLoc("block/redsalt/red_salt_n"),
+                        modLoc("block/redsalt/red_salt_s"),
+                        modLoc("block/redsalt/red_salt_e"),
+                        modLoc("block/redsalt/red_salt_w")));
+
     }
     private String name(Block block) {
         return key(block).getPath();

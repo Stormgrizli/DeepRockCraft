@@ -6,14 +6,8 @@ import dev.stormgrizli.deeprockcraft.block.ModBlocks;
 import dev.stormgrizli.deeprockcraft.entity.ModEntities;
 import dev.stormgrizli.deeprockcraft.entity.renderer.GlyphidGruntRenderer;
 import dev.stormgrizli.deeprockcraft.item.ModItems;
-import dev.stormgrizli.deeprockcraft.worldgen.CustomOreFeature;
-import dev.stormgrizli.deeprockcraft.worldgen.ModWorldGen;
-import dev.stormgrizli.deeprockcraft.worldgen.biome.ModBiomes;
+import dev.stormgrizli.deeprockcraft.worldgen.biome.surface.ModSurfaceRules;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -24,9 +18,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
