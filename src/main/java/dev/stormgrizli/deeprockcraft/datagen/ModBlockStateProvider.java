@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -18,18 +19,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
         super(output, DeepRockCraftMod.MOD_ID, exFileHelper);
     }
 
+    public ResourceLocation extend(ResourceLocation rl, String suffix) {
+        String var10002 = rl.getNamespace();
+        String var10003 = rl.getPath();
+        return new ResourceLocation(var10002, var10003 + suffix);
+    }
+
+    public void ambientStoneBlock(RegistryObject<Block> block) {
+        ResourceLocation z = this.extend(this.blockTexture(block.get()), "_z");
+        ResourceLocation nz = this.extend(this.blockTexture(block.get()), "_nz");
+        ResourceLocation x = this.extend(this.blockTexture(block.get()), "_x");
+        ResourceLocation nx = this.extend(this.blockTexture(block.get()), "_nx");
+        ResourceLocation up = this.extend(this.blockTexture(block.get()), "_up");
+        ResourceLocation dw = this.extend(this.blockTexture(block.get()), "_dw");
+        ModelFile stone = this.models().cube(this.name(block.get()), dw,up,nz,z,x,nx);
+        this.getVariantBuilder(block.get())
+                .partialState()
+                .modelForState().modelFile(stone)
+                .addModel();
+        this.blockItem(block);
+    }
+
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.MOD_PORTAL);
-        simpleBlockWithItem(ModBlocks.RED_SALT.get(),
-                models().cube(name(ModBlocks.RED_SALT.get()),
-                        modLoc("block/redsalt/red_salt_dw"),
-                        modLoc("block/redsalt/red_salt_up"),
-                        modLoc("block/redsalt/red_salt_n"),
-                        modLoc("block/redsalt/red_salt_s"),
-                        modLoc("block/redsalt/red_salt_e"),
-                        modLoc("block/redsalt/red_salt_w")));
-
+        ambientStoneBlock(ModBlocks.RED_SALT);
+        ambientStoneBlockSBT(ModBlocks.CRYSTALLINE_STONE);
+        ambientStoneBlockSBT(ModBlocks.CRYSTALLINE_STONE_SLAB);
     }
     private String name(Block block) {
         return key(block).getPath();
@@ -45,5 +61,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    }
+    public void ambientStoneBlockSBT(RegistryObject<Block> block) {
+        ResourceLocation sd = this.extend(this.blockTexture(block.get()), "_sd");
+        ResourceLocation up = this.extend(this.blockTexture(block.get()), "_up");
+        ResourceLocation dw = this.extend(this.blockTexture(block.get()), "_dw");
+        ModelFile stone = this.models().cube(this.name(block.get()), up,dw,sd,sd,sd,sd);
+        this.getVariantBuilder(block.get())
+                .partialState()
+                .modelForState().modelFile(stone)
+                .addModel();
+        this.blockItem(block);
     }
 }

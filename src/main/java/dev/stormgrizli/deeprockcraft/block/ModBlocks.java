@@ -30,9 +30,13 @@ public class ModBlocks {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
     public static final RegistryObject<Block> NITRA_BLOCK = registerBlock("nitra_block",
-            () -> new NitraBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).strength(1).noOcclusion().lightLevel(value -> 8)));
+            () -> new NitraBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).strength(1)));
     public static final RegistryObject<Block> MOD_PORTAL = registerBlock("mod_portal",
-            () -> new ModPortalBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable().noOcclusion().noCollission()));
+            () -> new ModPortalBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable().noCollission()));
     public static final RegistryObject<Block> RED_SALT = registerBlock("red_salt",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> CRYSTALLINE_STONE = registerBlock("crystalline_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> CRYSTALLINE_STONE_SLAB = registerBlock("crystalline_stone_slab",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 }

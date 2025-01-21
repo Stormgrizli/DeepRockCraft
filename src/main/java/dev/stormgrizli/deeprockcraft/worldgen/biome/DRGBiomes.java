@@ -1,0 +1,104 @@
+package dev.stormgrizli.deeprockcraft.worldgen.biome;
+
+import com.google.common.collect.ImmutableList;
+import com.mojang.datafixers.util.Pair;
+import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
+import dev.stormgrizli.deeprockcraft.entity.ModEntities;
+import dev.stormgrizli.deeprockcraft.worldgen.ModPlacedFeatures;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.Music;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.common.world.ForgeBiomeModifiers;
+
+import static dev.stormgrizli.deeprockcraft.worldgen.ModBiomeModifiers.ADD_NITRA_BLOCK_ORE;
+
+public class DRGBiomes {
+    public static final ResourceKey<Biome> SALT_PITS = ResourceKey.create(Registries.BIOME,
+            new ResourceLocation(DeepRockCraftMod.MOD_ID, "salt_pits"));
+
+    public static final ResourceKey<Biome> CRYSTALLINE_CAVERNS = ResourceKey.create(Registries.BIOME,
+            new ResourceLocation(DeepRockCraftMod.MOD_ID, "crystalline_caverns"));
+
+
+    public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(builder);
+        BiomeDefaultFeatures.addDefaultSprings(builder);
+    }
+
+    public static void bootstrap(BootstapContext<Biome> context) {
+        HolderGetter<PlacedFeature> featureGetter = context.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
+        context.register(SALT_PITS, new Biome.BiomeBuilder()
+                .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
+                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
+                        .build())
+                .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
+                        .build())
+                .hasPrecipitation(false)
+                .downfall(0.0F)
+                .temperature(0.8F)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 1643784, 7304538)
+                    .build())
+                .build());
+
+        context.register(CRYSTALLINE_CAVERNS, new Biome.BiomeBuilder()
+                .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
+                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
+                        .build())
+                .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
+                        .build())
+                .hasPrecipitation(false)
+                .downfall(0.0F)
+                .temperature(0.8F)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 1643784, 7304538)
+                    .build())
+                .build());
+    }
+    private static BiomeSpecialEffects.Builder generateColors(BiomeSpecialEffects.Builder builder, int skyFog, int grass) {
+        return builder
+                .skyColor(1186057)
+                .fogColor(skyFog)
+                .waterColor(342306)
+                .waterFogColor(332810)
+                .grassColorOverride(grass)
+                .foliageColorOverride(grass);
+    }
+    private static MobSpawnSettings.Builder addCaveMobs(MobSpawnSettings.Builder builder) {
+        return builder;
+    }
+
+    private static MobSpawnSettings.Builder addRotspawn(MobSpawnSettings.Builder builder) {
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder addOresAndCaves(BiomeGenerationSettings.Builder builder) {
+        return builder
+               // .addCarver(GenerationStep.Carving.AIR, UGConfiguredCarvers.UNDERGARDEN_CAVE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY);
+    }
+    private static BiomeSpecialEffects.Builder addMusicAndAmbience(BiomeSpecialEffects.Builder builder) {
+        return addMusicAndAmbience(builder);
+    }
+
+    public static BiomeSource buildBiomeSource(HolderGetter<Biome> biomes) {
+        return MultiNoiseBiomeSource.createFromList(new Climate.ParameterList<>(ImmutableList.of(
+                Pair.of(Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, -2.0F, 0.0F, 0.0F), biomes.getOrThrow(SALT_PITS)),
+                Pair.of(Climate.parameters(-1.0F, -0.4F, -0.9F, -0.7F, -2.0F, 0.0F, 0.0F), biomes.getOrThrow(CRYSTALLINE_CAVERNS))
+                //Pair.of(Climate.parameters(Climate.Parameter.span(0.0F, 1.0F), Climate.Parameter.span(0.0F, 0.4F), Climate.Parameter.span(0.0F, 0.9F), Climate.Parameter.point(0.0F), Climate.Parameter.point(2.0F), Climate.Parameter.span(-1.0F, 1.0F), 0.0F), biomes.getOrThrow(ANCIENT_SEA)),
+                //Pair.of(Climate.parameters(Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F), Climate.Parameter.span(0.7F, 1.0F), Climate.Parameter.point(2.0F), Climate.Parameter.point(0.0F), 0.0F), biomes.getOrThrow(DEAD_SEA)),
+               // Pair.of(Climate.parameters(Climate.Parameter.point(-1.0F), Climate.Parameter.point(-0.4F), Climate.Parameter.point(-0.9F), Climate.Parameter.point(-0.7F), Climate.Parameter.point(2.0F), Climate.Parameter.span(0.0F, 0.5F), 0.0F), biomes.getOrThrow(ICY_SEA))
+        )));
+    }
+}

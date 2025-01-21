@@ -1,7 +1,7 @@
 package dev.stormgrizli.deeprockcraft.worldgen.biome.surface;
 
 import dev.stormgrizli.deeprockcraft.block.ModBlocks;
-import dev.stormgrizli.deeprockcraft.worldgen.biome.ModBiomes;
+import dev.stormgrizli.deeprockcraft.worldgen.biome.DRGBiomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
@@ -13,7 +13,7 @@ public class ModSurfaceRules {
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, RED_SALT), RED_SALT);
 
         return SurfaceRules.sequence(
-                SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.SALT_PITS),
+                SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
                                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, RED_SALT)),
                         SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, RED_SALT)),
 
