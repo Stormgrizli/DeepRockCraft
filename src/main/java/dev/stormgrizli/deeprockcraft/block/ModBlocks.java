@@ -35,8 +35,12 @@ public class ModBlocks {
             () -> new ModPortalBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable().noCollission()));
     public static final RegistryObject<Block> RED_SALT = registerBlock("red_salt",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> WINE_SALT = registerBlock("wine_salt",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CRYSTALLINE_STONE = registerBlock("crystalline_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CRYSTALLINE_STONE_SLAB = registerBlock("crystalline_stone_slab",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> ROSE_SALT = registerBlock("rose_salt",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 }

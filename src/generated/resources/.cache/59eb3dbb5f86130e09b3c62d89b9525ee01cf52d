@@ -1,3 +1,7 @@
-// 1.20.1	2024-08-01T00:42:56.1451986	Loot Tables
+// 1.20.1	2025-02-09T20:43:59.8668072	Loot Tables
+232cece9d1e164da65e75c3a1d1bc1b81afa4589 data/deeprockcraft/loot_tables/blocks/crystalline_stone.json
+dcd230990f6aef641a9e1b30827ae32f0ad12da7 data/deeprockcraft/loot_tables/blocks/crystalline_stone_slab.json
 4663a65bc8b523be7ba073de3c7c52a0d5c552e4 data/deeprockcraft/loot_tables/blocks/nitra_block.json
 10c21552c04527c22312e1face2a22ddd39461d1 data/deeprockcraft/loot_tables/blocks/red_salt.json
+ba8ee34cf99ea9a5246e4da67b7ce196e821d541 data/deeprockcraft/loot_tables/blocks/rose_salt.json
+10a6e56ac3b4a230256001364663f33e565ce7b9 data/deeprockcraft/loot_tables/blocks/wine_salt.json

@@ -1,8 +1,9 @@
-// 1.20.1	2024-08-01T00:42:56.1471987	Registries
-ca4fc6113d1d54b2600bcd313cdd6a3dc95bd870 data/deeprockcraft/dimension/drgdim.json
-11c298788af5bfdfc4a6062de20fc03ee0a3e102 data/deeprockcraft/dimension_type/drg_type.json
+// 1.20.1	2025-02-09T20:43:59.9129928	Registries
+07d5ca473e63d50bfb824994d522878618155c1c data/deeprockcraft/dimension/drgdimension.json
+d42f4f8d5db51030295dddd38f9e00c158bedd33 data/deeprockcraft/dimension_type/drgdimension.json
 1fc308f167a7e6d4942d9216dc1b3f0beebe1be1 data/deeprockcraft/forge/biome_modifier/add_nitra_block_ore.json
-c9497cdacdcdc305ab1a1e93ed2b01ce7590c8c1 data/deeprockcraft/worldgen/biome/crystalline_caverns.json
-c9497cdacdcdc305ab1a1e93ed2b01ce7590c8c1 data/deeprockcraft/worldgen/biome/salt_pits.json
+e31d4b446472b76b380ce0f611db641e8934ac6d data/deeprockcraft/worldgen/biome/crystalline_caverns.json
+e31d4b446472b76b380ce0f611db641e8934ac6d data/deeprockcraft/worldgen/biome/salt_pits.json
 5dd48ec0ad2536799e80a8628a52cafc2a586532 data/deeprockcraft/worldgen/configured_feature/nitra_block.json
+990c6f6bbcbbe1fad33e139eaae124251eb9a9c8 data/deeprockcraft/worldgen/noise_settings/drgdimension.json
 28ed5f071f5235d2c1203b32959e715e2e2068f4 data/deeprockcraft/worldgen/placed_feature/nitra_block.json

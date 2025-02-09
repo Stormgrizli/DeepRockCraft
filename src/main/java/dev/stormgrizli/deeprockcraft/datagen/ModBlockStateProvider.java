@@ -44,6 +44,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.MOD_PORTAL);
         ambientStoneBlock(ModBlocks.RED_SALT);
+        ambientStoneBlock(ModBlocks.WINE_SALT);
+        ambientStoneBlock(ModBlocks.ROSE_SALT);
         ambientStoneBlockSBT(ModBlocks.CRYSTALLINE_STONE);
         ambientStoneBlockSBT(ModBlocks.CRYSTALLINE_STONE_SLAB);
     }

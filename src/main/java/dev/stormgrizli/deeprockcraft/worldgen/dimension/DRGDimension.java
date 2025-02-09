@@ -12,6 +12,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -21,6 +22,8 @@ import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraft.world.level.levelgen.DensityFunctions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalLong;
 
@@ -65,12 +68,95 @@ public class DRGDimension {
                 new NoiseBasedChunkGenerator(DRGBiomes.buildBiomeSource(biomeRegistry), noiseGenSettings.getOrThrow(DRG_NOISE_GEN))));
     }
 
+
+    public static final SurfaceRules.RuleSource customNoiseLayer = SurfaceRules.sequence(
+            SurfaceRules.ifTrue(
+                    SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS),
+                    SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE_SLAB.get().defaultBlockState())
+            ),
+            SurfaceRules.ifTrue(
+                    SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
+                    SurfaceRules.state(ModBlocks.WINE_SALT.get().defaultBlockState())
+            )
+    );
+
+    public static final SurfaceRules.RuleSource additionCustomNoiseLayer = SurfaceRules.sequence(
+            SurfaceRules.ifTrue(
+                    SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS),
+                    SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())
+            ),
+            SurfaceRules.ifTrue(
+                    SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
+                    SurfaceRules.state(ModBlocks.ROSE_SALT.get().defaultBlockState())
+            )
+    );
+
+    public static SurfaceRules.RuleSource layers(BootstapContext<NoiseGeneratorSettings> context, Integer... heights){
+        HolderGetter<NormalNoise.NoiseParameters> noises = context.lookup(Registries.NOISE);
+        List<SurfaceRules.RuleSource> l = new ArrayList<>();
+        for (int i : heights){
+            l.add(
+                    SurfaceRules.sequence(
+                            SurfaceRules.ifTrue(
+                                    SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i), 0),
+                                    SurfaceRules.ifTrue(
+                                            SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+1), 0)),
+                                            SurfaceRules.ifTrue(
+                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.BADLANDS_SURFACE).key(), -0.3D, 0.1D),
+                                                    customNoiseLayer
+                                            )
+                                    )
+                            ),
+                            SurfaceRules.ifTrue(
+                                    SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+1), 0),
+                                    SurfaceRules.ifTrue(
+                                            SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+2), 0)),
+                                            SurfaceRules.ifTrue(
+                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.CALCITE).key(), -0.3D, 0.1D),
+                                                    customNoiseLayer
+                                            )
+                                    )
+                            )
+                    )
+            );
+            l.add(
+                    SurfaceRules.sequence(
+                            SurfaceRules.ifTrue(
+                                    SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i), 0),
+                                    SurfaceRules.ifTrue(
+                                            SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+1), 0)),
+                                            SurfaceRules.ifTrue(
+                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.BADLANDS_SURFACE).key(), -0.3D, 0.1D),
+                                                    additionCustomNoiseLayer
+                                            )
+                                    )
+                            ),
+                            SurfaceRules.ifTrue(
+                                    SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+1), 0),
+                                    SurfaceRules.ifTrue(
+                                            SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+2), 0)),
+                                            SurfaceRules.ifTrue(
+                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.CALCITE).key(), -0.3D, 0.1D),
+                                                    additionCustomNoiseLayer
+                                            )
+                                    )
+                            )
+                    )
+            );
+        }
+        if (heights.length == 0) {
+            throw new IllegalArgumentException("Need at least 1 heights layers");
+        } else {
+            return new SurfaceRules.SequenceRuleSource(l);
+        }
+    }
+
+
     public static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> context) {
         HolderGetter<DensityFunction> functions = context.lookup(Registries.DENSITY_FUNCTION);
         HolderGetter<NormalNoise.NoiseParameters> noises = context.lookup(Registries.NOISE);
         DensityFunction densityfunction = NoiseRouterData.getFunction(functions, NoiseRouterData.SHIFT_X);
         DensityFunction densityfunction1 = NoiseRouterData.getFunction(functions, NoiseRouterData.SHIFT_Z);
-        DensityFunction densityFunction2 = NoiseRouterData.getFunction(functions, NoiseRouterData.SPAGHETTI_2D);
         context.register(DRG_NOISE_GEN, new NoiseGeneratorSettings(
                 NoiseSettings.create(0, 512, 2, 2),
                 Blocks.STONE.defaultBlockState(),
@@ -166,36 +252,10 @@ public class DRGDimension {
                         //sediment
                         SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(10), 0)), SurfaceRules.state(Blocks.STONE.defaultBlockState()))),
                         //mix coarse deepsoil into blood bog
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.stoneDepthCheck(0, true, 0, CaveSurface.FLOOR),
-                                        SurfaceRules.sequence(
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.noiseCondition(noises.getOrThrow(Noises.SOUL_SAND_LAYER).key(), 0.0D, 1.8D),
-                                                        SurfaceRules.state(ModBlocks.RED_SALT.get().defaultBlockState())
-                                                ),
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.stoneDepthCheck(0, false, 0, CaveSurface.FLOOR),
-                                                        SurfaceRules.state(ModBlocks.RED_SALT.get().defaultBlockState())
-                                                )
-                                        )
-                                )
-                        ),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS),
-                                SurfaceRules.sequence(
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.yBlockCheck(VerticalAnchor.absolute(16), 0), // Y >= 16
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(17), 0)), // Y < 17
-                                                        SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE_SLAB.get().defaultBlockState()) // Применяем блок
-                                                )
-                                        ),
-                                        SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState()) // Остальное
-                                )
-                        ),
-///fill ~15 ~15 ~15 ~-15 ~-15 ~-15 air replace deeprockcraft:crystalline_stone
+                        layers(context, 5, 9, 15, 21, 27, 33, 37, 42, 48, 53, 59, 65, 70, 74, 79, 83, 88, 93, 97, 103, 109, 114, 119, 124, 128, 134, 139, 144, 148, 154, 159, 165, 171, 177, 182, 188, 194, 198, 203, 207, 213, 219, 224, 229, 234, 240, 244, 250, 255, 259, 264, 270, 276, 282, 288, 294, 298, 303, 308, 314, 319, 323, 329, 334, 339, 345, 351, 357, 362, 368, 374, 379, 385, 390, 396, 401, 407, 412, 418, 423, 429, 435, 439, 445, 450, 455, 461, 467, 473, 478, 484, 489, 495, 500, 506, 511),
+
+//fill ~15 ~15 ~15 ~-15 ~-15 ~-15 air replace deeprockcraft:crystalline_stone
+//fill ~15 ~15 ~15 ~-15 ~-15 ~-15 air replace deeprockcraft:red_salt
 
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.SALT_PITS), SurfaceRules.state(ModBlocks.RED_SALT.get().defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState()))
@@ -209,124 +269,3 @@ public class DRGDimension {
         ));
     }
 }
-/*
-minecraft:overworld/caves/entrances
-DensityFunctions.cacheOnce(
-                                                                                                        DensityFunctions.min(
-                                                                                                                DensityFunctions.add(
-                                                                                                                        DensityFunctions.add(
-                                                                                                                                DensityFunctions.constant(0.37),
-                                                                                                                                DensityFunctions.noise(noises.getOrThrow(Noises.CAVE_ENTRANCE), 0.75, 0.5)
-                                                                                                                        ),
-                                                                                                                        DensityFunctions.yClampedGradient(-10, 30, 0.3, 0.0)
-                                                                                                                ),
-                                                                                                                DensityFunctions.add(
-                                                                                                                        NoiseRouterData.getFunction(functions, NoiseRouterData.SPAGHETTI_ROUGHNESS_FUNCTION),
-                                                                                                                        new DensityFunctions.Clamp(
-                                                                                                                                DensityFunctions.add(
-                                                                                                                                        DensityFunctions.max(
-                                                                                                                                                DensityFunctions.weirdScaledSampler(
-                                                                                                                                                        DensityFunctions.cacheOnce(
-                                                                                                                                                                DensityFunctions.noise(noises.getOrThrow(Noises.SPAGHETTI_3D_RARITY), 2, 1)
-                                                                                                                                                        ),
-                                                                                                                                                        noises.getOrThrow(Noises.SPAGHETTI_3D_1),
-                                                                                                                                                        DensityFunctions.WeirdScaledSampler.RarityValueMapper.TYPE1
-                                                                                                                                                ),
-                                                                                                                                                DensityFunctions.weirdScaledSampler(
-                                                                                                                                                        DensityFunctions.cacheOnce(
-                                                                                                                                                                DensityFunctions.noise(noises.getOrThrow(Noises.SPAGHETTI_3D_RARITY), 2, 1)
-                                                                                                                                                        ),
-                                                                                                                                                        noises.getOrThrow(Noises.SPAGHETTI_3D_2),
-                                                                                                                                                        DensityFunctions.WeirdScaledSampler.RarityValueMapper.TYPE1
-                                                                                                                                                )
-                                                                                                                                        ),
-                                                                                                                                        DensityFunctions.add(
-                                                                                                                                                DensityFunctions.constant(-0.0765),
-                                                                                                                                                DensityFunctions.mul(
-                                                                                                                                                        DensityFunctions.constant(-0.011499999999999996),
-                                                                                                                                                        DensityFunctions.noise(noises.getOrThrow(Noises.SPAGHETTI_3D_THICKNESS), 1, 1)
-                                                                                                                                                )
-                                                                                                                                        )
-                                                                                                                                ),-1.0, 1.0
-                                                                                                                        )
-                                                                                                                )
-                                                                                                        )
-                                                                                                )*/
-/*
-minecraft:overworld/caves/spaghetti_roughness_function
-                                                                                                DensityFunctions.cacheOnce(
-                                                                                                        DensityFunctions.mul(
-                                                                                                                DensityFunctions.add(
-                                                                                                                        DensityFunctions.constant(-0.05D),
-                                                                                                                        DensityFunctions.mul(
-                                                                                                                                DensityFunctions.constant(-0.07D),
-                                                                                                                                DensityFunctions.noise(noises.getOrThrow(Noises.SPAGHETTI_ROUGHNESS_MODULATOR),5,5)
-                                                                                                                        )
-                                                                                                                ),
-                                                                                                                DensityFunctions.add(
-                                                                                                                        DensityFunctions.constant(-0.4D),
-                                                                                                                        DensityFunctions.min( //abs
-                                                                                                                                DensityFunctions.constant(0),
-                                                                                                                                DensityFunctions.add(
-                                                                                                                                        DensityFunctions.constant(0),
-                                                                                                                                        DensityFunctions.mul(
-                                                                                                                                                DensityFunctions.constant(-1),
-                                                                                                                                                DensityFunctions.noise(noises.getOrThrow(Noises.SPAGHETTI_ROUGHNESS),1,1)
-                                                                                                                                        )
-                                                                                                                                )
-                                                                                                                        )
-                                                                                                                )
-                                                                                                        )
-                                                                                                )
-
-Noodle Function                                                                                                 DensityFunctions.interpolated(
-                                                                                                                        DensityFunctions.noise(noises.getOrThrow(Noises.NOODLE), 1, 1)),
-                                                                                                                -1000000,
-                                                                                                                0,
-                                                                                                                DensityFunctions.constant(64),
-                                                                                                                DensityFunctions.add(
-                                                                                                                        DensityFunctions.interpolated(
-                                                                                                                                DensityFunctions.add(
-                                                                                                                                        DensityFunctions.constant(-0.075),
-                                                                                                                                        DensityFunctions.mul(
-                                                                                                                                                DensityFunctions.constant(-0.025),
-                                                                                                                                                DensityFunctions.noise(noises.getOrThrow(Noises.NOODLE_THICKNESS), 1, 1))
-                                                                                                                                )
-                                                                                                                        ),
-                                                                                                                        DensityFunctions.mul(
-                                                                                                                                DensityFunctions.constant(1.5),
-                                                                                                                                DensityFunctions.max(
-                                                                                                                                        DensityFunctions.min( //abs
-                                                                                                                                                DensityFunctions.constant(0),
-                                                                                                                                                DensityFunctions.add(
-                                                                                                                                                        DensityFunctions.constant(0),
-                                                                                                                                                        DensityFunctions.mul(
-                                                                                                                                                                DensityFunctions.constant(-1),
-                                                                                                                                                                DensityFunctions.interpolated(
-                                                                                                                                                                        DensityFunctions.noise(noises.getOrThrow(Noises.NOODLE_RIDGE_A), 2.6666667, 2.6666667)
-                                                                                                                                                                )
-                                                                                                                                                        )
-                                                                                                                                                )
-                                                                                                                                        ),
-                                                                                                                                        DensityFunctions.min( //abs
-                                                                                                                                                DensityFunctions.constant(0),
-                                                                                                                                                DensityFunctions.add(
-                                                                                                                                                        DensityFunctions.constant(0),
-                                                                                                                                                        DensityFunctions.mul(
-                                                                                                                                                                DensityFunctions.constant(-1),
-                                                                                                                                                                DensityFunctions.interpolated(
-                                                                                                                                                                        DensityFunctions.noise(noises.getOrThrow(Noises.NOODLE_RIDGE_B), 2.6666667, 2.6666667)
-                                                                                                                                                                )
-                                                                                                                                                        )
-                                                                                                                                                )
-                                                                                                                                        )
-                                                                                                                                )
-                                                                                                                        )
-                                                                                                                )
-                                                                                                        )
-
-
-
-
-
- */
