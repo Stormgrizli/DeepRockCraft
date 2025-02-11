@@ -53,7 +53,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> RADIATED_STONE = registerBlock("radiated_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> AZURE_STONE = registerBlock("radiated_stone",
+    public static final RegistryObject<Block> AZURE_STONE = registerBlock("azure_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> GLACIAL_STONE = registerBlock("glacial_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.ICE)));
