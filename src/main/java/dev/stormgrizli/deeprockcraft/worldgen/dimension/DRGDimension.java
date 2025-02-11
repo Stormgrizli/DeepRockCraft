@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraft.world.level.levelgen.DensityFunctions;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +44,7 @@ public class DRGDimension {
 
     public static void bootstrapType(BootstapContext<DimensionType> context) {
         context.register(DRG_DIM_TYPE, new DimensionType(
-                OptionalLong.of(12000), // fixedTime
+                OptionalLong.of(0), // fixedTime
                 false, // hasSkylight
                 false, // hasCeiling
                 true, // ultraWarm
@@ -52,10 +53,10 @@ public class DRGDimension {
                 false, // bedWorks
                 false, // respawnAnchorWorks
                 0, // minY
-                512, // height
-                512, // logicalHeight
+                320, // height
+                320, // logicalHeight
                 BlockTags.INFINIBURN_OVERWORLD, // infiniburn
-                BuiltinDimensionTypes.OVERWORLD_EFFECTS, // effectsLocation
+                BuiltinDimensionTypes.NETHER_EFFECTS, // effectsLocation
                 0.0f, // ambientLight
                 new DimensionType.MonsterSettings(false, false, ConstantInt.of(0), 0)));
     }
@@ -77,6 +78,10 @@ public class DRGDimension {
             SurfaceRules.ifTrue(
                     SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
                     SurfaceRules.state(ModBlocks.WINE_SALT.get().defaultBlockState())
+            ),
+            SurfaceRules.ifTrue(
+                    SurfaceRules.isBiome(DRGBiomes.SANDBLASED_CORRIDORS),
+                    SurfaceRules.state(ModBlocks.YL_SAND_BLASED_STONE.get().defaultBlockState())
             )
     );
 
@@ -91,7 +96,23 @@ public class DRGDimension {
             )
     );
 
-    public static SurfaceRules.RuleSource layers(BootstapContext<NoiseGeneratorSettings> context, Integer... heights){
+    public static List<Integer> generateHeights(){
+        return generateHeights(100);
+    }
+
+    public static List<Integer> generateHeights(int count){
+        List<Integer> heights = new ArrayList<>();
+        heights.add(5);
+        int botBound = 315/count-2;
+        int topBound = 315/count+2;
+        while (heights.get(heights.size()-1)<315){
+            int lastMember = heights.get(heights.size()-1);
+            heights.add(lastMember + botBound + (int)(Math.random()*topBound));
+        }
+        return heights;
+    }
+
+    public static SurfaceRules.RuleSource layers(BootstapContext<NoiseGeneratorSettings> context, List<Integer> heights){
         HolderGetter<NormalNoise.NoiseParameters> noises = context.lookup(Registries.NOISE);
         List<SurfaceRules.RuleSource> l = new ArrayList<>();
         for (int i : heights){
@@ -112,39 +133,30 @@ public class DRGDimension {
                                     SurfaceRules.ifTrue(
                                             SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+2), 0)),
                                             SurfaceRules.ifTrue(
-                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.CALCITE).key(), -0.3D, 0.1D),
+                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.CALCITE).key(), -0.3D, 0.6D),
                                                     customNoiseLayer
                                             )
                                     )
                             )
                     )
             );
-            l.add(
-                    SurfaceRules.sequence(
-                            SurfaceRules.ifTrue(
-                                    SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i), 0),
-                                    SurfaceRules.ifTrue(
-                                            SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+1), 0)),
-                                            SurfaceRules.ifTrue(
-                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.BADLANDS_SURFACE).key(), -0.3D, 0.1D),
-                                                    additionCustomNoiseLayer
-                                            )
-                                    )
-                            ),
-                            SurfaceRules.ifTrue(
-                                    SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+1), 0),
-                                    SurfaceRules.ifTrue(
-                                            SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i+2), 0)),
-                                            SurfaceRules.ifTrue(
-                                                    SurfaceRules.noiseCondition(noises.getOrThrow(Noises.CALCITE).key(), -0.3D, 0.1D),
-                                                    additionCustomNoiseLayer
-                                            )
-                                    )
-                            )
-                    )
-            );
+            if (heights.get(heights.size()-1) != i && heights.get(heights.indexOf(i)+1)-i > 6 && Math.random() > 0.5F) {
+                int diff = heights.get(heights.indexOf(i)+1)-i;
+                l.add(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i - 3 + Math.round((float)(diff/2))), 0),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(i + 5 + Math.round((float)(diff/2))), 0)),
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.noiseCondition(noises.getOrThrow(Noises.CALCITE).key(), -0.3D, 0.1D),
+                                                        additionCustomNoiseLayer
+                                                )
+                                        )
+                                )
+                );
+            }
         }
-        if (heights.length == 0) {
+        if (heights.isEmpty()) {
             throw new IllegalArgumentException("Need at least 1 heights layers");
         } else {
             return new SurfaceRules.SequenceRuleSource(l);
@@ -158,7 +170,7 @@ public class DRGDimension {
         DensityFunction densityfunction = NoiseRouterData.getFunction(functions, NoiseRouterData.SHIFT_X);
         DensityFunction densityfunction1 = NoiseRouterData.getFunction(functions, NoiseRouterData.SHIFT_Z);
         context.register(DRG_NOISE_GEN, new NoiseGeneratorSettings(
-                NoiseSettings.create(0, 512, 2, 2),
+                NoiseSettings.create(0, 320, 1, 1),
                 Blocks.STONE.defaultBlockState(),
                 Blocks.AIR.defaultBlockState(),
                 new NoiseRouter(
@@ -166,22 +178,22 @@ public class DRGDimension {
                         DensityFunctions.zero(), //fluid level floodedness
                         DensityFunctions.zero(), //fluid level spread
                         DensityFunctions.zero(), //lava
-                        DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, noises.getOrThrow(Noises.TEMPERATURE)), //temperature
-                        DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, noises.getOrThrow(Noises.VEGETATION)), //vegetation
+                        DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 1.0D, noises.getOrThrow(Noises.TEMPERATURE)), //temperature
+                        DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 1.0D, noises.getOrThrow(Noises.VEGETATION)), //vegetation
                         NoiseRouterData.getFunction(functions, NoiseRouterData.CONTINENTS), //continents
                         NoiseRouterData.getFunction(functions, NoiseRouterData.EROSION), //erosion
                         DensityFunctions.rangeChoice(
-                                NoiseRouterData.getFunction(functions, NoiseRouterData.Y), 0.0D, 32.0D,
+                                NoiseRouterData.getFunction(functions, NoiseRouterData.Y), 0.0D, 96.0D,
                                 DensityFunctions.constant(2.0D),
                                 DensityFunctions.constant(-2.0D)), //depth
                         NoiseRouterData.getFunction(functions, NoiseRouterData.RIDGES), //ridges
                         DensityFunctions.add(
                                 DensityFunctions.mul(
-                                        DensityFunctions.constant(1.5), // Общая интенсивность спагетти
+                                        DensityFunctions.constant(1.5),
                                         DensityFunctions.noise(noises.getOrThrow(Noises.SPAGHETTI_3D_THICKNESS), 0.4, 0.6)
                                 ),
                                 DensityFunctions.mul(
-                                        DensityFunctions.constant(0.8), // Дополнительная хаотичность
+                                        DensityFunctions.constant(0.8),
                                         DensityFunctions.noise(noises.getOrThrow(Noises.SPAGHETTI_3D_RARITY), 2, 1)
                                 )
                         ),//caves
@@ -192,13 +204,13 @@ public class DRGDimension {
                                                 DensityFunctions.add(
                                                         DensityFunctions.constant(2.5),
                                                         DensityFunctions.mul(
-                                                                DensityFunctions.yClampedGradient(30, -20, 1.0D, 0.0D),
+                                                                DensityFunctions.yClampedGradient(6, -20, 1.0D, 0.0D),
                                                                 DensityFunctions.add(
                                                                         DensityFunctions.constant(-2.5D),
                                                                         DensityFunctions.add(
                                                                                 DensityFunctions.constant(0.5D),
                                                                                 DensityFunctions.mul(
-                                                                                        DensityFunctions.yClampedGradient(500, 501, 1.0D, 0.0D),
+                                                                                        DensityFunctions.yClampedGradient(315, 320, 1.0D, 0.0D),
                                                                                         DensityFunctions.add(
                                                                                                 DensityFunctions.constant(-0.6F),
                                                                                                 DensityFunctions.max(
@@ -243,25 +255,43 @@ public class DRGDimension {
                 DensityFunctions.zero() //vein gap
                 ),
                 SurfaceRules.sequence(
-                        //bedrock floor
+                        //bedrock
                         SurfaceRules.ifTrue(SurfaceRules.verticalGradient("minecraft:bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())),
-                        //bedrock ceiling
                         SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("minecraft:bedrock_roof", VerticalAnchor.belowTop(5), VerticalAnchor.top())), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())),
-                        //filler depthrock
-                        SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.belowTop(5), 0), SurfaceRules.state(Blocks.STONE.defaultBlockState())),
-                        //sediment
-                        SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(10), 0)), SurfaceRules.state(Blocks.STONE.defaultBlockState()))),
-                        //mix coarse deepsoil into blood bog
-                        layers(context, 5, 9, 15, 21, 27, 33, 37, 42, 48, 53, 59, 65, 70, 74, 79, 83, 88, 93, 97, 103, 109, 114, 119, 124, 128, 134, 139, 144, 148, 154, 159, 165, 171, 177, 182, 188, 194, 198, 203, 207, 213, 219, 224, 229, 234, 240, 244, 250, 255, 259, 264, 270, 276, 282, 288, 294, 298, 303, 308, 314, 319, 323, 329, 334, 339, 345, 351, 357, 362, 368, 374, 379, 385, 390, 396, 401, 407, 412, 418, 423, 429, 435, 439, 445, 450, 455, 461, 467, 473, 478, 484, 489, 495, 500, 506, 511),
 
-//fill ~15 ~15 ~15 ~-15 ~-15 ~-15 air replace deeprockcraft:crystalline_stone
-//fill ~15 ~15 ~15 ~-15 ~-15 ~-15 air replace deeprockcraft:red_salt
+                        layers(context,generateHeights(70)),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(DRGBiomes.MAGMA_CORE),
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.stoneDepthCheck(0, true, 0, CaveSurface.FLOOR),
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.noiseCondition(noises.getOrThrow(Noises.NETHERRACK).key(), 0.4D, 1D),
+                                                        SurfaceRules.state(Blocks.MAGMA_BLOCK.defaultBlockState())
+                                                )
+                                )
+                        ),
+
+
+
+
+
+
 
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.SALT_PITS), SurfaceRules.state(ModBlocks.RED_SALT.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState()))
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.GLACIAL_STRATA), SurfaceRules.state(ModBlocks.GLACIAL_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.AZURE_WEALD), SurfaceRules.state(ModBlocks.AZURE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.DENSE_BIOZONE), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.FUNGUS_BOGS), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.SANDBLASED_CORRIDORS), SurfaceRules.state(ModBlocks.SAND_BLASED_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.HOLLOW_BOUGH), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.MAGMA_CORE), SurfaceRules.state(ModBlocks.DARK_MAGMA_CORE_BLOCK.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.RADIOACTIVE_EXCLUSION_ZONE), SurfaceRules.state(ModBlocks.RADIATED_STONE.get().defaultBlockState()))
+
+
                 ),
                 List.of(), //spawn targets
-                32,
+                -64,
                 false,
                 false,
                 false,
@@ -269,3 +299,6 @@ public class DRGDimension {
         ));
     }
 }
+//fill ~15 ~15 ~15 ~-15 ~-15 ~-15 air replace deeprockcraft:crystalline_stone
+//fill ~15 ~15 ~15 ~-15 ~-15 ~-15 air replace deeprockcraft:red_salt
+

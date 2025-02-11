@@ -29,6 +29,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.CRYSTALLINE_STONE.get());
         this.dropSelf(ModBlocks.CRYSTALLINE_STONE_SLAB.get());
         this.dropSelf(ModBlocks.ROSE_SALT.get());
+        this.dropSelf(ModBlocks.MAGMA_CORE_BLOCK.get());
+        this.dropSelf(ModBlocks.DARK_MAGMA_CORE_BLOCK.get());
+        this.dropSelf(ModBlocks.SAND_BLASED_STONE.get());
+        this.dropSelf(ModBlocks.YL_SAND_BLASED_STONE.get());
+        this.dropSelf(ModBlocks.RADIATED_STONE.get());
+        this.dropSelf(ModBlocks.GLACIAL_STONE.get());
+        this.dropSelf(ModBlocks.AZURE_STONE.get());
     }
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
         return createSilkTouchDispatchTable(pBlock,

@@ -43,11 +43,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.MOD_PORTAL);
-        ambientStoneBlock(ModBlocks.RED_SALT);
-        ambientStoneBlock(ModBlocks.WINE_SALT);
-        ambientStoneBlock(ModBlocks.ROSE_SALT);
-        ambientStoneBlockSBT(ModBlocks.CRYSTALLINE_STONE);
-        ambientStoneBlockSBT(ModBlocks.CRYSTALLINE_STONE_SLAB);
+        blockWithItem(ModBlocks.DARK_MAGMA_CORE_BLOCK);
+        blockWithItem(ModBlocks.MAGMA_CORE_BLOCK);
+        blockWithItem(ModBlocks.SAND_BLASED_STONE);
+        blockWithItem(ModBlocks.YL_SAND_BLASED_STONE);
+        blockWithItem(ModBlocks.RADIATED_STONE);
+        blockWithItem(ModBlocks.GLACIAL_STONE);
+        blockWithItem(ModBlocks.AZURE_STONE);
+        ambientStoneBlockST(ModBlocks.RED_SALT);
+        ambientStoneBlockST(ModBlocks.WINE_SALT);
+        ambientStoneBlockST(ModBlocks.ROSE_SALT);
+        ambientStoneBlockST(ModBlocks.CRYSTALLINE_STONE);
+        ambientStoneBlockST(ModBlocks.CRYSTALLINE_STONE_SLAB);
     }
     private String name(Block block) {
         return key(block).getPath();
@@ -68,7 +75,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ResourceLocation sd = this.extend(this.blockTexture(block.get()), "_sd");
         ResourceLocation up = this.extend(this.blockTexture(block.get()), "_up");
         ResourceLocation dw = this.extend(this.blockTexture(block.get()), "_dw");
-        ModelFile stone = this.models().cube(this.name(block.get()), up,dw,sd,sd,sd,sd);
+        ModelFile stone = this.models().cube(this.name(block.get()), dw,up,sd,sd,sd,sd);
+        this.getVariantBuilder(block.get())
+                .partialState()
+                .modelForState().modelFile(stone)
+                .addModel();
+        this.blockItem(block);
+    }
+    public void ambientStoneBlockST(RegistryObject<Block> block) {
+        ResourceLocation sd = this.extend(this.blockTexture(block.get()), "_sd");
+        ResourceLocation up = this.extend(this.blockTexture(block.get()), "_up");
+        ModelFile stone = this.models().cube(this.name(block.get()), sd,up,sd,sd,sd,sd);
         this.getVariantBuilder(block.get())
                 .partialState()
                 .modelForState().modelFile(stone)

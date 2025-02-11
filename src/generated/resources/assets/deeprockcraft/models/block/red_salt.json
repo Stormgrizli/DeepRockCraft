@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "deeprockcraft:block/red_salt_dw",
-    "east": "deeprockcraft:block/red_salt_x",
-    "north": "deeprockcraft:block/red_salt_nz",
-    "south": "deeprockcraft:block/red_salt_z",
+    "down": "deeprockcraft:block/red_salt_sd",
+    "east": "deeprockcraft:block/red_salt_sd",
+    "north": "deeprockcraft:block/red_salt_sd",
+    "south": "deeprockcraft:block/red_salt_sd",
     "up": "deeprockcraft:block/red_salt_up",
-    "west": "deeprockcraft:block/red_salt_nx"
+    "west": "deeprockcraft:block/red_salt_sd"
   }
 }

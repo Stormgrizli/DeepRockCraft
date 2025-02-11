@@ -43,4 +43,18 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> ROSE_SALT = registerBlock("rose_salt",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> DARK_MAGMA_CORE_BLOCK = registerBlock("dark_magma_core_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> MAGMA_CORE_BLOCK = registerBlock("magma_core_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SAND_BLASED_STONE = registerBlock("sand_blased_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> YL_SAND_BLASED_STONE = registerBlock("yl_sand_blased_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> RADIATED_STONE = registerBlock("radiated_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> AZURE_STONE = registerBlock("radiated_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> GLACIAL_STONE = registerBlock("glacial_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.ICE)));
 }

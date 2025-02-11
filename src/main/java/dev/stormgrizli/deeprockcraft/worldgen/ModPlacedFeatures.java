@@ -30,7 +30,7 @@ public class ModPlacedFeatures {
 
        register(context, NITRA_BLOCK_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_NITRA_BLOCK_KEY),
                ModOrePlacement.commonOrePlacement(18,
-                       HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(320))));
+                       HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(320))));
 
    }
    private static ResourceKey<PlacedFeature> registerKey(String name) {
