@@ -1,8 +1,12 @@
 package dev.stormgrizli.deeprockcraft.event;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
+import dev.stormgrizli.deeprockcraft.block.ModBlocks;
 import dev.stormgrizli.deeprockcraft.entity.ModEntities;
 import dev.stormgrizli.deeprockcraft.entity.custom.GlyphidGruntEntity;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.world.level.GrassColor;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

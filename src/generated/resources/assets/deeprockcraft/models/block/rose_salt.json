@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "deeprockcraft:block/rose_salt_sd",
+    "east": "deeprockcraft:block/rose_salt_sd",
+    "north": "deeprockcraft:block/rose_salt_sd",
+    "particle": "deeprockcraft:block/rose_salt_sd",
+    "south": "deeprockcraft:block/rose_salt_sd",
+    "up": "deeprockcraft:block/rose_salt_up",
+    "west": "deeprockcraft:block/rose_salt_sd"
+  }
+}

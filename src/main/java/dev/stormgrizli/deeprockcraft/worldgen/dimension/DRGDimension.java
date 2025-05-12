@@ -12,7 +12,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -21,10 +20,8 @@ import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraft.world.level.levelgen.DensityFunctions;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalLong;
 
@@ -73,7 +70,7 @@ public class DRGDimension {
     public static final SurfaceRules.RuleSource customNoiseLayer = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
                     SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS),
-                    SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE_SLAB.get().defaultBlockState())
+                    SurfaceRules.state(ModBlocks.WHITE_CRYSTALLINE_STONE.get().defaultBlockState())
             ),
             SurfaceRules.ifTrue(
                     SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
@@ -177,7 +174,7 @@ public class DRGDimension {
                         DensityFunctions.zero(), //barrier
                         DensityFunctions.zero(), //fluid level floodedness
                         DensityFunctions.zero(), //fluid level spread
-                        DensityFunctions.zero(), //lava
+                        DensityFunctions.yClampedGradient(6, 0, 1.0D, 0.0D), //lava
                         DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 1.0D, noises.getOrThrow(Noises.TEMPERATURE)), //temperature
                         DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 1.0D, noises.getOrThrow(Noises.VEGETATION)), //vegetation
                         NoiseRouterData.getFunction(functions, NoiseRouterData.CONTINENTS), //continents
@@ -259,7 +256,7 @@ public class DRGDimension {
                         SurfaceRules.ifTrue(SurfaceRules.verticalGradient("minecraft:bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("minecraft:bedrock_roof", VerticalAnchor.belowTop(5), VerticalAnchor.top())), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())),
 
-                        layers(context,generateHeights(70)),
+                        layers(context,generateHeights(50)),
                         SurfaceRules.ifTrue(
                                 SurfaceRules.isBiome(DRGBiomes.MAGMA_CORE),
                                 SurfaceRules.ifTrue(
@@ -281,10 +278,10 @@ public class DRGDimension {
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.GLACIAL_STRATA), SurfaceRules.state(ModBlocks.GLACIAL_STONE.get().defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.AZURE_WEALD), SurfaceRules.state(ModBlocks.AZURE_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.DENSE_BIOZONE), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.FUNGUS_BOGS), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.DENSE_BIOZONE), SurfaceRules.state(ModBlocks.BIOZONE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.FUNGUS_BOGS), SurfaceRules.state(ModBlocks.FUNGUS_STONE.get().defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.SANDBLASED_CORRIDORS), SurfaceRules.state(ModBlocks.SAND_BLASED_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.HOLLOW_BOUGH), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.HOLLOW_BOUGH), SurfaceRules.state(ModBlocks.HOLLOW_BOUGH_STONE.get().defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.MAGMA_CORE), SurfaceRules.state(ModBlocks.DARK_MAGMA_CORE_BLOCK.get().defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.RADIOACTIVE_EXCLUSION_ZONE), SurfaceRules.state(ModBlocks.RADIATED_STONE.get().defaultBlockState()))
 

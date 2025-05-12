@@ -4,6 +4,7 @@
     "down": "deeprockcraft:block/red_salt_sd",
     "east": "deeprockcraft:block/red_salt_sd",
     "north": "deeprockcraft:block/red_salt_sd",
+    "particle": "deeprockcraft:block/red_salt_sd",
     "south": "deeprockcraft:block/red_salt_sd",
     "up": "deeprockcraft:block/red_salt_up",
     "west": "deeprockcraft:block/red_salt_sd"

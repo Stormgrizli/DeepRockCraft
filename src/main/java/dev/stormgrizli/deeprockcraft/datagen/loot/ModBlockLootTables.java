@@ -7,6 +7,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -27,7 +28,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RED_SALT.get());
         this.dropSelf(ModBlocks.WINE_SALT.get());
         this.dropSelf(ModBlocks.CRYSTALLINE_STONE.get());
-        this.dropSelf(ModBlocks.CRYSTALLINE_STONE_SLAB.get());
+        this.dropSelf(ModBlocks.WHITE_CRYSTALLINE_STONE.get());
         this.dropSelf(ModBlocks.ROSE_SALT.get());
         this.dropSelf(ModBlocks.MAGMA_CORE_BLOCK.get());
         this.dropSelf(ModBlocks.DARK_MAGMA_CORE_BLOCK.get());
@@ -36,6 +37,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RADIATED_STONE.get());
         this.dropSelf(ModBlocks.GLACIAL_STONE.get());
         this.dropSelf(ModBlocks.AZURE_STONE.get());
+        this.dropSelf(ModBlocks.FUNGUS_STONE.get());
+        this.dropSelf(ModBlocks.BIOZONE_STONE.get());
+        this.dropSelf(ModBlocks.HOLLOW_BOUGH_STONE.get());
     }
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
         return createSilkTouchDispatchTable(pBlock,

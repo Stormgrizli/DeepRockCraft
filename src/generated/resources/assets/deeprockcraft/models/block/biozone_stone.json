@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "deeprockcraft:block/biozone_stone_sd",
+    "east": "deeprockcraft:block/biozone_stone_sd",
+    "north": "deeprockcraft:block/biozone_stone_sd",
+    "particle": "deeprockcraft:block/biozone_stone_sd",
+    "south": "deeprockcraft:block/biozone_stone_sd",
+    "up": "deeprockcraft:block/biozone_stone_up",
+    "west": "deeprockcraft:block/biozone_stone_sd"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "deeprockcraft:block/wine_salt_sd",
+    "east": "deeprockcraft:block/wine_salt_sd",
+    "north": "deeprockcraft:block/wine_salt_sd",
+    "particle": "deeprockcraft:block/wine_salt_sd",
+    "south": "deeprockcraft:block/wine_salt_sd",
+    "up": "deeprockcraft:block/wine_salt_up",
+    "west": "deeprockcraft:block/wine_salt_sd"
+  }
+}

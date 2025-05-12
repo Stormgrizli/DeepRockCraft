@@ -6,15 +6,18 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 import static net.minecraft.data.models.model.TextureMapping.cube;
 
 public class ModBlockStateProvider extends BlockStateProvider {
+
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, DeepRockCraftMod.MOD_ID, exFileHelper);
     }
@@ -32,7 +35,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ResourceLocation nx = this.extend(this.blockTexture(block.get()), "_nx");
         ResourceLocation up = this.extend(this.blockTexture(block.get()), "_up");
         ResourceLocation dw = this.extend(this.blockTexture(block.get()), "_dw");
-        ModelFile stone = this.models().cube(this.name(block.get()), dw,up,nz,z,x,nx);
+        ModelFile stone = this.models().cube(this.name(block.get()), dw,up,nz,z,x,nx).texture("particle",dw);
         this.getVariantBuilder(block.get())
                 .partialState()
                 .modelForState().modelFile(stone)
@@ -42,6 +45,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        crossBlock(ModBlocks.RED_BIG_CRYSTAL);
         blockWithItem(ModBlocks.MOD_PORTAL);
         blockWithItem(ModBlocks.DARK_MAGMA_CORE_BLOCK);
         blockWithItem(ModBlocks.MAGMA_CORE_BLOCK);
@@ -50,11 +54,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RADIATED_STONE);
         blockWithItem(ModBlocks.GLACIAL_STONE);
         blockWithItem(ModBlocks.AZURE_STONE);
+        blockWithItem(ModBlocks.HOLLOW_BOUGH_STONE);
+        blockWithItem(ModBlocks.CRYSTALLINE_STONE);
+        blockWithItem(ModBlocks.WHITE_CRYSTALLINE_STONE);
+        blockWithItem(ModBlocks.FUNGUS_STONE);
+        ambientStoneBlockST(ModBlocks.BIOZONE_STONE);
         ambientStoneBlockST(ModBlocks.RED_SALT);
         ambientStoneBlockST(ModBlocks.WINE_SALT);
         ambientStoneBlockST(ModBlocks.ROSE_SALT);
-        ambientStoneBlockST(ModBlocks.CRYSTALLINE_STONE);
-        ambientStoneBlockST(ModBlocks.CRYSTALLINE_STONE_SLAB);
     }
     private String name(Block block) {
         return key(block).getPath();
@@ -75,7 +82,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ResourceLocation sd = this.extend(this.blockTexture(block.get()), "_sd");
         ResourceLocation up = this.extend(this.blockTexture(block.get()), "_up");
         ResourceLocation dw = this.extend(this.blockTexture(block.get()), "_dw");
-        ModelFile stone = this.models().cube(this.name(block.get()), dw,up,sd,sd,sd,sd);
+        ModelFile stone = this.models().cube(this.name(block.get()), dw,up,sd,sd,sd,sd).texture("particle",sd);
         this.getVariantBuilder(block.get())
                 .partialState()
                 .modelForState().modelFile(stone)
@@ -85,11 +92,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
     public void ambientStoneBlockST(RegistryObject<Block> block) {
         ResourceLocation sd = this.extend(this.blockTexture(block.get()), "_sd");
         ResourceLocation up = this.extend(this.blockTexture(block.get()), "_up");
-        ModelFile stone = this.models().cube(this.name(block.get()), sd,up,sd,sd,sd,sd);
+        ModelFile stone = this.models().cube(this.name(block.get()), sd,up,sd,sd,sd,sd).texture("particle",sd);
         this.getVariantBuilder(block.get())
                 .partialState()
                 .modelForState().modelFile(stone)
                 .addModel();
         this.blockItem(block);
+    }
+
+    private void crossBlock(RegistryObject<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 }

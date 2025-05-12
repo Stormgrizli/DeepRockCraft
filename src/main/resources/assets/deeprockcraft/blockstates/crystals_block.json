@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "dense=true,facing=down": {
+      "model": "deeprockcraft:block/crystals/crystals_dense_block",
+      "x": 180
+    },
+    "dense=true,facing=up": {
+      "model": "deeprockcraft:block/crystals/crystals_dense_block"
+    },
+    "dense=true,facing=north": {
+      "model": "deeprockcraft:block/crystals/crystals_dense_block",
+      "x": 90
+    },
+    "dense=true,facing=south": {
+      "model": "deeprockcraft:block/crystals/crystals_dense_block",
+      "x": 90,
+      "y": 180
+    },
+    "dense=true,facing=west": {
+      "model": "deeprockcraft:block/crystals/crystals_dense_block",
+      "x": 90,
+      "y": 270
+    },
+    "dense=true,facing=east": {
+      "model": "deeprockcraft:block/crystals/crystals_dense_block",
+      "x": 90,
+      "y": 90
+    },
+    "dense=false,facing=down": {
+      "model": "deeprockcraft:block/crystals/crystals_v1_block",
+      "x": 180
+    },
+    "dense=false,facing=up": {
+      "model": "deeprockcraft:block/crystals/crystals_v1_block"
+    },
+    "dense=false,facing=north": {
+      "model": "deeprockcraft:block/crystals/crystals_v1_block",
+      "x": 90
+    },
+    "dense=false,facing=south": {
+      "model": "deeprockcraft:block/crystals/crystals_v1_block",
+      "x": 90,
+      "y": 180
+    },
+    "dense=false,facing=west": {
+      "model": "deeprockcraft:block/crystals/crystals_v1_block",
+      "x": 90,
+      "y": 270
+    },
+    "dense=false,facing=east": {
+      "model": "deeprockcraft:block/crystals/crystals_v1_block",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "deeprockcraft:block/dark_magma_core_block"
+  }
+}

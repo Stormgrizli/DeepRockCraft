@@ -65,7 +65,7 @@ public class DRGBiomes {
                 .hasPrecipitation(false)
                 .downfall(0.0F)
                 .temperature(0.8F)
-                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 12083553, 12083553)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 12083553, 10108730)
                     .build())
                 .build());
 
@@ -78,7 +78,7 @@ public class DRGBiomes {
                 .hasPrecipitation(false)
                 .downfall(0.0F)
                 .temperature(0.8F)
-                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 5680072, 5680072)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 5680072, 5728658)
                     .build())
                 .build());
         context.register(AZURE_WEALD, new Biome.BiomeBuilder()
@@ -114,7 +114,7 @@ public class DRGBiomes {
                 .hasPrecipitation(false)
                 .downfall(0.0F)
                 .temperature(0.8F)
-                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 9242375, 9242375)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 9242375, 5852754)
                     .build())
                 .build());
         context.register(RADIOACTIVE_EXCLUSION_ZONE, new Biome.BiomeBuilder()
@@ -126,7 +126,7 @@ public class DRGBiomes {
                 .hasPrecipitation(false)
                 .downfall(0.0F)
                 .temperature(0.8F)
-                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 43011, 43011)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 43011, 6909032)
                     .build())
                 .build());
         context.register(SANDBLASED_CORRIDORS, new Biome.BiomeBuilder()
@@ -162,7 +162,7 @@ public class DRGBiomes {
                 .hasPrecipitation(false)
                 .downfall(0.0F)
                 .temperature(0.8F)
-                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 7368816, 7368816)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 7368816, 7684671)
                     .build())
                 .build());
         context.register(HOLLOW_BOUGH, new Biome.BiomeBuilder()
@@ -174,7 +174,7 @@ public class DRGBiomes {
                 .hasPrecipitation(false)
                 .downfall(0.0F)
                 .temperature(0.8F)
-                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 4494999, 4494999)
+                    .specialEffects(generateColors(new BiomeSpecialEffects.Builder(), 4494999, 5916211)
                     .build())
                 .build());
     }

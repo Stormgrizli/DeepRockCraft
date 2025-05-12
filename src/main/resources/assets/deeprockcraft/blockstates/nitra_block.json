@@ -1,249 +1,249 @@
 {
   "variants": {
     "north=false,south=false,east=false,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_c"
+      "model": "deeprockcraft:block/nitra_ore/nitra_c"
     },
     "north=true,south=true,east=true,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_block"
+      "model": "deeprockcraft:block/nitra_ore/nitra_block"
     },
     "down=true,north=false,south=false,east=false,west=false,up=false": {
-      "model": "deeprockcraft:block/nitra_dw"
+      "model": "deeprockcraft:block/nitra_ore/nitra_dw"
     },
     "down=false,north=false,south=false,east=false,west=false,up=true": {
-      "model": "deeprockcraft:block/nitra_up"
+      "model": "deeprockcraft:block/nitra_ore/nitra_up"
     },
     "north=true,down=true,south=false,east=false,west=false,up=false": {
-      "model": "deeprockcraft:block/nitra_dwn"
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwn"
     },
     "north=true,west=true,down=true,south=false,east=false,up=false,": {
-      "model": "deeprockcraft:block/nitra_dwnw"
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnw"
     },
     "north=true,south=false,east=false,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_n",
+      "model": "deeprockcraft:block/nitra_ore/nitra_n",
       "y": 0
     },
     "north=false,south=true,east=false,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_n",
+      "model": "deeprockcraft:block/nitra_ore/nitra_n",
       "y": 180
     },
     "north=false,south=false,east=true,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_n",
+      "model": "deeprockcraft:block/nitra_ore/nitra_n",
       "y": 90
     },
     "north=false,south=false,east=false,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_n",
+      "model": "deeprockcraft:block/nitra_ore/nitra_n",
       "y": 270
     },
     "north=true,south=true,east=false,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nsw",
       "y": 0
     },
     "north=true,south=true,east=true,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nsw",
       "y": 180
     },
     "north=true,south=true,east=true,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nswe",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nswe",
       "y": 0
     },
     "north=true,south=false,east=false,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nw",
       "y": 0
     },
     "north=false,south=true,east=false,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nw",
       "y": 270
     },
     "north=false,south=true,east=true,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nw",
       "y": 180
     },
     "north=true,south=false,east=true,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nw",
       "y": 90
     },
     "north=true,south=true,east=false,west=false,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_ns",
+      "model": "deeprockcraft:block/nitra_ore/nitra_ns",
       "y": 0
     },
     "north=false,south=false,east=true,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_ns",
+      "model": "deeprockcraft:block/nitra_ore/nitra_ns",
       "y": 90
     },
     "north=true,south=false,east=false,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnw",
       "y": 0
     },
     "north=false,south=true,east=true,west=false,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnw",
       "y": 180
     },
     "north=true,south=false,east=false,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwn",
       "y": 0
     },
     "north=false,south=true,east=false,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwn",
       "y": 180
     },
     "north=false,south=false,east=true,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwn",
       "y": 90
     },
     "north=false,south=false,east=false,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwn",
       "y": 270
     },
     "north=true,south=true,east=false,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwns",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwns",
       "y": 0
     },
     "north=true,south=false,east=false,west=false,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upn",
       "y": 0
     },
     "north=false,south=false,east=true,west=false,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upn",
       "y": 90
     },
     "north=false,south=true,east=false,west=false,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upn",
       "y": 180
     },
     "north=false,south=false,east=false,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upn",
       "y": 270
     },
     "north=true,south=true,east=false,west=false,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upns",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upns",
       "y": 0
     },
     "north=false,south=false,east=true,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upns",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upns",
       "y": 90
     },
     "north=true,south=false,east=false,west=false,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwn",
       "y": 0
     },
     "north=false,south=true,east=false,west=false,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwn",
       "y": 180
     },
     "north=false,south=false,east=true,west=false,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwn",
       "y": 90
     },
     "north=false,south=false,east=false,west=true,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwn",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwn",
       "y": 270
     },
     "north=true,south=true,east=false,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnsw",
       "y": 0
     },
     "north=true,south=true,east=true,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnsw",
       "y": 180
     },
     "north=true,south=false,east=true,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnsw",
       "y": 90
     },
     "north=false,south=true,east=true,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnsw",
       "y": 270
     },
     "north=false,south=true,east=false,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnw",
       "y": 270
     },
     "north=true,south=false,east=true,west=false,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnw",
       "y": 90
     },
     "north=true,south=true,east=false,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnsw",
       "y": 0
     },
     "north=true,south=true,east=true,west=false,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnsw",
       "y": 180
     },
     "north=false,south=true,east=true,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnsw",
       "y": 270
     },
     "north=true,south=false,east=true,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnsw",
       "y": 90
     },
     "north=true,south=true,east=true,west=true,up=true,down=false": {
-      "model": "deeprockcraft:block/nitra_upnswe",
+      "model": "deeprockcraft:block/nitra_ore/nitra_upnswe",
       "y": 0
     },
     "north=false,south=true,east=false,west=true,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnw",
       "y": 270
     },
     "north=true,south=false,east=true,west=false,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnw",
       "y": 180
     },
     "north=true,south=true,east=false,west=true,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnsw",
       "y": 0
     },
     "north=true,south=true,east=true,west=false,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnsw",
       "y": 180
     },
     "north=false,south=true,east=true,west=true,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnsw",
       "y": 270
     },
     "north=true,south=false,east=true,west=true,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwnsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnsw",
       "y": 90
     },
     "north=true,south=true,east=true,west=true,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwnswe",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwnswe",
       "y": 0
     },
     "north=true,south=true,east=false,west=false,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwns",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwns",
       "y": 0
     },
     "north=false,south=false,east=true,west=true,up=false,down=true": {
-      "model": "deeprockcraft:block/nitra_dwns",
+      "model": "deeprockcraft:block/nitra_ore/nitra_dwns",
       "y": 90
     },
     "north=false,south=false,east=false,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updw",
       "y": 0
     },
     "north=true,south=false,east=false,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnw",
       "y": 0
     },
     "north=false,south=true,east=false,west=true,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnw",
       "y": 270
     },
     "north=false,south=true,east=true,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnw",
       "y": 180
     },
     "north=true,south=false,east=true,west=false,up=true,down=true": {
-      "model": "deeprockcraft:block/nitra_updwnw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_updwnw",
       "y": 90
     },
     "north=false,south=true,east=true,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nsw",
       "y": 270
     },
     "north=true,south=false,east=true,west=true,up=false,down=false": {
-      "model": "deeprockcraft:block/nitra_nsw",
+      "model": "deeprockcraft:block/nitra_ore/nitra_nsw",
       "y": 90
     }
   }

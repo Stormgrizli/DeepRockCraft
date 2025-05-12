@@ -1,6 +1,7 @@
 package dev.stormgrizli.deeprockcraft.block;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
+import dev.stormgrizli.deeprockcraft.block.custom.CrystalsBlock;
 import dev.stormgrizli.deeprockcraft.block.custom.ModPortalBlock;
 import dev.stormgrizli.deeprockcraft.block.custom.NitraBlock;
 import dev.stormgrizli.deeprockcraft.item.ModItems;
@@ -8,6 +9,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -39,7 +41,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CRYSTALLINE_STONE = registerBlock("crystalline_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CRYSTALLINE_STONE_SLAB = registerBlock("crystalline_stone_slab",
+    public static final RegistryObject<Block> WHITE_CRYSTALLINE_STONE = registerBlock("white_crystalline_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> ROSE_SALT = registerBlock("rose_salt",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
@@ -57,4 +59,14 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> GLACIAL_STONE = registerBlock("glacial_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.ICE)));
+    public static final RegistryObject<Block> HOLLOW_BOUGH_STONE = registerBlock("hollow_bough_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> FUNGUS_STONE = registerBlock("fungus_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> BIOZONE_STONE = registerBlock("biozone_stone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> RED_BIG_CRYSTAL = registerBlock("red_big_crystal",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.POINTED_DRIPSTONE).noLootTable()));
+    public static final RegistryObject<Block> CRYSTALS_BLOCK = registerBlock("crystals_block",
+            () -> new CrystalsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noLootTable().noOcclusion().noCollission()));
 }
