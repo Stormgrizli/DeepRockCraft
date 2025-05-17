@@ -1,7 +1,7 @@
 package dev.stormgrizli.deeprockcraft.block.custom;
 
-import dev.stormgrizli.deeprockcraft.worldgen.dimension.DRGDimension;
-import dev.stormgrizli.deeprockcraft.worldgen.portal.ModTeleporter;
+import dev.stormgrizli.deeprockcraft.worldgen.dimension.DRCDimension;
+import dev.stormgrizli.deeprockcraft.worldgen.portal.TemporalTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -33,15 +33,15 @@ public class ModPortalBlock extends Block {
     private void handleDRGPortal(Entity player, BlockPos pPos) {
         if (player.level() instanceof ServerLevel serverlevel) {
             MinecraftServer minecraftserver = serverlevel.getServer();
-            ResourceKey<Level> resourcekey = player.level().dimension() == DRGDimension.DRG_LEVEL_KEY ?
-                    Level.OVERWORLD : DRGDimension.DRG_LEVEL_KEY;
+            ResourceKey<Level> resourcekey = player.level().dimension() == DRCDimension.DRG_LEVEL_KEY ?
+                    Level.OVERWORLD : DRCDimension.DRG_LEVEL_KEY;
 
             ServerLevel portalDimension = minecraftserver.getLevel(resourcekey);
             if (portalDimension != null && !player.isPassenger()) {
-                if(resourcekey == DRGDimension.DRG_LEVEL_KEY) {
-                    player.changeDimension(portalDimension, new ModTeleporter(pPos, true));
+                if(resourcekey == DRCDimension.DRG_LEVEL_KEY) {
+                    player.changeDimension(portalDimension, new TemporalTeleporter(pPos, true));
                 } else {
-                    player.changeDimension(portalDimension, new ModTeleporter(pPos, false));
+                    player.changeDimension(portalDimension, new TemporalTeleporter(pPos, false));
                 }
             }
         }

@@ -3,29 +3,19 @@ package dev.stormgrizli.deeprockcraft.worldgen.biome;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
-import dev.stormgrizli.deeprockcraft.entity.ModEntities;
-import dev.stormgrizli.deeprockcraft.worldgen.ModPlacedFeatures;
+import dev.stormgrizli.deeprockcraft.worldgen.DRCPlacedFeatures;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.Music;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.common.world.ForgeBiomeModifiers;
 
-import static dev.stormgrizli.deeprockcraft.worldgen.ModBiomeModifiers.ADD_NITRA_BLOCK_ORE;
-
-public class DRGBiomes {
+public class DRCBiomes {
     public static final ResourceKey<Biome> SALT_PITS = ResourceKey.create(Registries.BIOME,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "salt_pits"));
     public static final ResourceKey<Biome> CRYSTALLINE_CAVERNS = ResourceKey.create(Registries.BIOME,
@@ -58,7 +48,6 @@ public class DRGBiomes {
         HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
         context.register(SALT_PITS, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -71,7 +60,6 @@ public class DRGBiomes {
 
         context.register(CRYSTALLINE_CAVERNS, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -83,7 +71,6 @@ public class DRGBiomes {
                 .build());
         context.register(AZURE_WEALD, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -95,7 +82,6 @@ public class DRGBiomes {
                 .build());
         context.register(FUNGUS_BOGS, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -107,7 +93,6 @@ public class DRGBiomes {
                 .build());
         context.register(MAGMA_CORE, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -119,7 +104,6 @@ public class DRGBiomes {
                 .build());
         context.register(RADIOACTIVE_EXCLUSION_ZONE, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -131,7 +115,6 @@ public class DRGBiomes {
                 .build());
         context.register(SANDBLASED_CORRIDORS, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -143,7 +126,6 @@ public class DRGBiomes {
                 .build());
         context.register(GLACIAL_STRATA, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -155,7 +137,6 @@ public class DRGBiomes {
                 .build());
         context.register(DENSE_BIOZONE, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -167,7 +148,6 @@ public class DRGBiomes {
                 .build());
         context.register(HOLLOW_BOUGH, new Biome.BiomeBuilder()
                 .generationSettings(addOresAndCaves((new BiomeGenerationSettings.Builder(featureGetter, carverGetter)))
-                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                         .build())
                 .mobSpawnSettings(addRotspawn(addCaveMobs(new MobSpawnSettings.Builder()))
                         .build())
@@ -191,13 +171,15 @@ public class DRGBiomes {
         return builder;
     }
 
+
     private static MobSpawnSettings.Builder addRotspawn(MobSpawnSettings.Builder builder) {
         return builder;
     }
     private static BiomeGenerationSettings.Builder addOresAndCaves(BiomeGenerationSettings.Builder builder) {
         return builder
                // .addCarver(GenerationStep.Carving.AIR, UGConfiguredCarvers.UNDERGARDEN_CAVE)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.NITRA_BLOCK_PLACED_KEY);
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, DRCPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DRCPlacedFeatures.SPIKE_CRYSTAL);
     }
     private static BiomeSpecialEffects.Builder addMusicAndAmbience(BiomeSpecialEffects.Builder builder) {
         return addMusicAndAmbience(builder);

@@ -1,13 +1,12 @@
 package dev.stormgrizli.deeprockcraft.datagen.loot;
 
-import dev.stormgrizli.deeprockcraft.block.ModBlocks;
-import dev.stormgrizli.deeprockcraft.item.ModItems;
+import dev.stormgrizli.deeprockcraft.registries.DRCBlocks;
+import dev.stormgrizli.deeprockcraft.registries.DRCItems;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -23,23 +22,23 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     }
     @Override
     protected void generate() {
-        this.add(ModBlocks.NITRA_BLOCK.get(),
-                block -> createCopperLikeOreDrops(ModBlocks.NITRA_BLOCK.get(), ModItems.NITRA_ORE.get()));
-        this.dropSelf(ModBlocks.RED_SALT.get());
-        this.dropSelf(ModBlocks.WINE_SALT.get());
-        this.dropSelf(ModBlocks.CRYSTALLINE_STONE.get());
-        this.dropSelf(ModBlocks.WHITE_CRYSTALLINE_STONE.get());
-        this.dropSelf(ModBlocks.ROSE_SALT.get());
-        this.dropSelf(ModBlocks.MAGMA_CORE_BLOCK.get());
-        this.dropSelf(ModBlocks.DARK_MAGMA_CORE_BLOCK.get());
-        this.dropSelf(ModBlocks.SAND_BLASED_STONE.get());
-        this.dropSelf(ModBlocks.YL_SAND_BLASED_STONE.get());
-        this.dropSelf(ModBlocks.RADIATED_STONE.get());
-        this.dropSelf(ModBlocks.GLACIAL_STONE.get());
-        this.dropSelf(ModBlocks.AZURE_STONE.get());
-        this.dropSelf(ModBlocks.FUNGUS_STONE.get());
-        this.dropSelf(ModBlocks.BIOZONE_STONE.get());
-        this.dropSelf(ModBlocks.HOLLOW_BOUGH_STONE.get());
+        this.add(DRCBlocks.NITRA_BLOCK.get(),
+                block -> createCopperLikeOreDrops(DRCBlocks.NITRA_BLOCK.get(), DRCItems.NITRA_ORE.get()));
+        this.dropSelf(DRCBlocks.RED_SALT.get());
+        this.dropSelf(DRCBlocks.WINE_SALT.get());
+        this.dropSelf(DRCBlocks.CRYSTALLINE_STONE.get());
+        this.dropSelf(DRCBlocks.WHITE_CRYSTALLINE_STONE.get());
+        this.dropSelf(DRCBlocks.ROSE_SALT.get());
+        this.dropSelf(DRCBlocks.MAGMA_CORE_BLOCK.get());
+        this.dropSelf(DRCBlocks.DARK_MAGMA_CORE_BLOCK.get());
+        this.dropSelf(DRCBlocks.SAND_BLASED_STONE.get());
+        this.dropSelf(DRCBlocks.YL_SAND_BLASED_STONE.get());
+        this.dropSelf(DRCBlocks.RADIATED_STONE.get());
+        this.dropSelf(DRCBlocks.GLACIAL_STONE.get());
+        this.dropSelf(DRCBlocks.AZURE_STONE.get());
+        this.dropSelf(DRCBlocks.FUNGUS_STONE.get());
+        this.dropSelf(DRCBlocks.BIOZONE_STONE.get());
+        this.dropSelf(DRCBlocks.HOLLOW_BOUGH_STONE.get());
     }
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
         return createSilkTouchDispatchTable(pBlock,
@@ -50,6 +49,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return DRCBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 }

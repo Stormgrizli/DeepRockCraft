@@ -1,10 +1,9 @@
-package dev.stormgrizli.deeprockcraft.block;
+package dev.stormgrizli.deeprockcraft.registries;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
 import dev.stormgrizli.deeprockcraft.block.custom.CrystalsBlock;
 import dev.stormgrizli.deeprockcraft.block.custom.ModPortalBlock;
 import dev.stormgrizli.deeprockcraft.block.custom.NitraBlock;
-import dev.stormgrizli.deeprockcraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -18,7 +17,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 
-public class ModBlocks {
+public class DRCBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DeepRockCraftMod.MOD_ID);
     public static void register(IEventBus Nitra ) {
         BLOCKS.register(Nitra);
@@ -29,7 +28,7 @@ public class ModBlocks {
         return toReturn;
     }
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        DRCItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
     public static final RegistryObject<Block> NITRA_BLOCK = registerBlock("nitra_block",
             () -> new NitraBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).strength(1)));

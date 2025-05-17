@@ -1,20 +1,16 @@
 package dev.stormgrizli.deeprockcraft.event;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
-import dev.stormgrizli.deeprockcraft.block.ModBlocks;
-import dev.stormgrizli.deeprockcraft.entity.ModEntities;
+import dev.stormgrizli.deeprockcraft.registries.DRCEntities;
 import dev.stormgrizli.deeprockcraft.entity.custom.GlyphidGruntEntity;
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.world.level.GrassColor;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DeepRockCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModEventBusEvents {
+public class DRCEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.GRYPHID_GRUNT.get(), GlyphidGruntEntity.createAttributes().build());
+        event.put(DRCEntities.GRYPHID_GRUNT.get(), GlyphidGruntEntity.createAttributes().build());
     }
 }

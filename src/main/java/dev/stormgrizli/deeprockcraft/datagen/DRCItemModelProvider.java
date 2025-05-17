@@ -1,7 +1,7 @@
 package dev.stormgrizli.deeprockcraft.datagen;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
-import dev.stormgrizli.deeprockcraft.block.ModBlocks;
+import dev.stormgrizli.deeprockcraft.registries.DRCBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -12,10 +12,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.LinkedHashMap;
-
-public class ModItemModelProvider extends ItemModelProvider {
-    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+public class DRCItemModelProvider extends ItemModelProvider {
+    public DRCItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, DeepRockCraftMod.MOD_ID, existingFileHelper);
     }
 
@@ -27,7 +25,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.FLOW_CEDAR_DOOR);
         buttonItem(ModBlocks.FLOW_CEDAR_BUTTON,ModBlocks.FLOW_CEDAR_PLANKS);
         evenSimplerBlockItem(ModBlocks.FLOW_CEDAR_STAIRS);*/
-        crossItem(ModBlocks.RED_BIG_CRYSTAL);
+        crossItem(DRCBlocks.RED_BIG_CRYSTAL);
     }
 
 

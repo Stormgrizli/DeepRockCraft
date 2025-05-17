@@ -1,8 +1,8 @@
 package dev.stormgrizli.deeprockcraft.worldgen.dimension;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
-import dev.stormgrizli.deeprockcraft.block.ModBlocks;
-import dev.stormgrizli.deeprockcraft.worldgen.biome.DRGBiomes;
+import dev.stormgrizli.deeprockcraft.registries.DRCBlocks;
+import dev.stormgrizli.deeprockcraft.worldgen.biome.DRCBiomes;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalLong;
 
-public class DRGDimension {
+public class DRCDimension {
     public static final ResourceKey<Level> DRG_LEVEL_KEY = ResourceKey.create(Registries.DIMENSION, name("drgdimension"));
 
     public static final ResourceKey<NoiseGeneratorSettings> DRG_NOISE_GEN = ResourceKey.create(Registries.NOISE_SETTINGS, name("drgdimension"));
@@ -63,33 +63,33 @@ public class DRGDimension {
         HolderGetter<DimensionType> dimTypes = context.lookup(Registries.DIMENSION_TYPE);
         HolderGetter<NoiseGeneratorSettings> noiseGenSettings = context.lookup(Registries.NOISE_SETTINGS);
         context.register(DRG_LEVEL_STEM, new LevelStem(dimTypes.getOrThrow(DRG_DIM_TYPE),
-                new NoiseBasedChunkGenerator(DRGBiomes.buildBiomeSource(biomeRegistry), noiseGenSettings.getOrThrow(DRG_NOISE_GEN))));
+                new NoiseBasedChunkGenerator(DRCBiomes.buildBiomeSource(biomeRegistry), noiseGenSettings.getOrThrow(DRG_NOISE_GEN))));
     }
 
 
     public static final SurfaceRules.RuleSource customNoiseLayer = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
-                    SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS),
-                    SurfaceRules.state(ModBlocks.WHITE_CRYSTALLINE_STONE.get().defaultBlockState())
+                    SurfaceRules.isBiome(DRCBiomes.CRYSTALLINE_CAVERNS),
+                    SurfaceRules.state(DRCBlocks.WHITE_CRYSTALLINE_STONE.get().defaultBlockState())
             ),
             SurfaceRules.ifTrue(
-                    SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
-                    SurfaceRules.state(ModBlocks.WINE_SALT.get().defaultBlockState())
+                    SurfaceRules.isBiome(DRCBiomes.SALT_PITS),
+                    SurfaceRules.state(DRCBlocks.WINE_SALT.get().defaultBlockState())
             ),
             SurfaceRules.ifTrue(
-                    SurfaceRules.isBiome(DRGBiomes.SANDBLASED_CORRIDORS),
-                    SurfaceRules.state(ModBlocks.YL_SAND_BLASED_STONE.get().defaultBlockState())
+                    SurfaceRules.isBiome(DRCBiomes.SANDBLASED_CORRIDORS),
+                    SurfaceRules.state(DRCBlocks.YL_SAND_BLASED_STONE.get().defaultBlockState())
             )
     );
 
     public static final SurfaceRules.RuleSource additionCustomNoiseLayer = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
-                    SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS),
-                    SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())
+                    SurfaceRules.isBiome(DRCBiomes.CRYSTALLINE_CAVERNS),
+                    SurfaceRules.state(DRCBlocks.CRYSTALLINE_STONE.get().defaultBlockState())
             ),
             SurfaceRules.ifTrue(
-                    SurfaceRules.isBiome(DRGBiomes.SALT_PITS),
-                    SurfaceRules.state(ModBlocks.ROSE_SALT.get().defaultBlockState())
+                    SurfaceRules.isBiome(DRCBiomes.SALT_PITS),
+                    SurfaceRules.state(DRCBlocks.ROSE_SALT.get().defaultBlockState())
             )
     );
 
@@ -258,7 +258,7 @@ public class DRGDimension {
 
                         layers(context,generateHeights(50)),
                         SurfaceRules.ifTrue(
-                                SurfaceRules.isBiome(DRGBiomes.MAGMA_CORE),
+                                SurfaceRules.isBiome(DRCBiomes.MAGMA_CORE),
                                 SurfaceRules.ifTrue(
                                         SurfaceRules.stoneDepthCheck(0, true, 0, CaveSurface.FLOOR),
                                                 SurfaceRules.ifTrue(
@@ -268,23 +268,16 @@ public class DRGDimension {
                                 )
                         ),
 
-
-
-
-
-
-
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.SALT_PITS), SurfaceRules.state(ModBlocks.RED_SALT.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.CRYSTALLINE_CAVERNS), SurfaceRules.state(ModBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.GLACIAL_STRATA), SurfaceRules.state(ModBlocks.GLACIAL_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.AZURE_WEALD), SurfaceRules.state(ModBlocks.AZURE_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.DENSE_BIOZONE), SurfaceRules.state(ModBlocks.BIOZONE_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.FUNGUS_BOGS), SurfaceRules.state(ModBlocks.FUNGUS_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.SANDBLASED_CORRIDORS), SurfaceRules.state(ModBlocks.SAND_BLASED_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.HOLLOW_BOUGH), SurfaceRules.state(ModBlocks.HOLLOW_BOUGH_STONE.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.MAGMA_CORE), SurfaceRules.state(ModBlocks.DARK_MAGMA_CORE_BLOCK.get().defaultBlockState())),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRGBiomes.RADIOACTIVE_EXCLUSION_ZONE), SurfaceRules.state(ModBlocks.RADIATED_STONE.get().defaultBlockState()))
-
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.SALT_PITS), SurfaceRules.state(DRCBlocks.RED_SALT.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.CRYSTALLINE_CAVERNS), SurfaceRules.state(DRCBlocks.CRYSTALLINE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.GLACIAL_STRATA), SurfaceRules.state(DRCBlocks.GLACIAL_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.AZURE_WEALD), SurfaceRules.state(DRCBlocks.AZURE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.DENSE_BIOZONE), SurfaceRules.state(DRCBlocks.BIOZONE_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.FUNGUS_BOGS), SurfaceRules.state(DRCBlocks.FUNGUS_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.SANDBLASED_CORRIDORS), SurfaceRules.state(DRCBlocks.SAND_BLASED_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.HOLLOW_BOUGH), SurfaceRules.state(DRCBlocks.HOLLOW_BOUGH_STONE.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.MAGMA_CORE), SurfaceRules.state(DRCBlocks.DARK_MAGMA_CORE_BLOCK.get().defaultBlockState())),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(DRCBiomes.RADIOACTIVE_EXCLUSION_ZONE), SurfaceRules.state(DRCBlocks.RADIATED_STONE.get().defaultBlockState()))
 
                 ),
                 List.of(), //spawn targets

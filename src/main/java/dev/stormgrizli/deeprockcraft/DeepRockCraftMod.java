@@ -2,11 +2,11 @@ package dev.stormgrizli.deeprockcraft;
 
 
 import com.mojang.logging.LogUtils;
-import dev.stormgrizli.deeprockcraft.block.ModBlocks;
-import dev.stormgrizli.deeprockcraft.block.entity.ModBlockEntities;
-import dev.stormgrizli.deeprockcraft.entity.ModEntities;
-import dev.stormgrizli.deeprockcraft.item.ModItems;
-import net.minecraftforge.api.distmarker.Dist;
+import dev.stormgrizli.deeprockcraft.registries.*;
+import dev.stormgrizli.deeprockcraft.worldgen.DRCFeature;
+import dev.stormgrizli.deeprockcraft.worldgen.DRCPlacedFeatures;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,32 +18,53 @@ import org.slf4j.Logger;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(DeepRockCraftMod.MOD_ID)
 public class DeepRockCraftMod {
-    public static final String MOD_ID = "deeprockcraft";
+
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static final String MOD_ID = "deeprockcraft";
+
     public DeepRockCraftMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+        IEventBus eventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::commonSetup);
 
-        ModEntities.register(modEventBus);
+        DRCBlocks.BLOCKS.register(modEventBus);
+        DRCBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        DRCCreativeTab.CREATIVE_TAB.register(modEventBus);
+        DRCEntities.ENTITY_TYPES.register(modEventBus);
+//        GEnchantments.ENCHANTMENTS.register(modEventBus);
+        DRCFeature.FEATURES.register(modEventBus);
+        DRCItems.ITEMS.register(modEventBus);
+//        GMobEffects.MOB_EFFECTS.register(modEventBus);
+//        GMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
+//        GMenuTypes.MENU_TYPES.register(modEventBus);
+//        GPotions.POTIONS.register(modEventBus);
+//        GParticleTypes.PARTICLES.register(modEventBus);
+//        GRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+//        GStructureProcessorTypes.STRUCTURE_PROCESSOR_TYPES.register(modEventBus);
+//        GSensorTypes.SENSOR_TYPES.register(modEventBus);
+//        GSoundEvents.SOUND_EVENTS.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(this);
+        eventBus.register(this);
+//        eventBus.register(new MobEvents());
+//        eventBus.register(new MiscEvents());
 
-        ModBlocks.register(modEventBus);
-
-        ModItems.register(modEventBus);
-
-        ModBlockEntities.register(modEventBus);
-
-        modEventBus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            DRCPlacedFeatures.init();
+//            DRCPotions.init();
+        });
+    }
 
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation(DeepRockCraftMod.MOD_ID, path);
     }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(DRCItems.NITRA_ORE);
+        }
     }
 }

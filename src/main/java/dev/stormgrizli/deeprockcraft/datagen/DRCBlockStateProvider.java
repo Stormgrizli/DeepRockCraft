@@ -1,24 +1,21 @@
 package dev.stormgrizli.deeprockcraft.datagen;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
-import dev.stormgrizli.deeprockcraft.block.ModBlocks;
+import dev.stormgrizli.deeprockcraft.registries.DRCBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.function.Supplier;
-
 import static net.minecraft.data.models.model.TextureMapping.cube;
 
-public class ModBlockStateProvider extends BlockStateProvider {
+public class DRCBlockStateProvider extends BlockStateProvider {
 
-    public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+    public DRCBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, DeepRockCraftMod.MOD_ID, exFileHelper);
     }
 
@@ -45,23 +42,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        crossBlock(ModBlocks.RED_BIG_CRYSTAL);
-        blockWithItem(ModBlocks.MOD_PORTAL);
-        blockWithItem(ModBlocks.DARK_MAGMA_CORE_BLOCK);
-        blockWithItem(ModBlocks.MAGMA_CORE_BLOCK);
-        blockWithItem(ModBlocks.SAND_BLASED_STONE);
-        blockWithItem(ModBlocks.YL_SAND_BLASED_STONE);
-        blockWithItem(ModBlocks.RADIATED_STONE);
-        blockWithItem(ModBlocks.GLACIAL_STONE);
-        blockWithItem(ModBlocks.AZURE_STONE);
-        blockWithItem(ModBlocks.HOLLOW_BOUGH_STONE);
-        blockWithItem(ModBlocks.CRYSTALLINE_STONE);
-        blockWithItem(ModBlocks.WHITE_CRYSTALLINE_STONE);
-        blockWithItem(ModBlocks.FUNGUS_STONE);
-        ambientStoneBlockST(ModBlocks.BIOZONE_STONE);
-        ambientStoneBlockST(ModBlocks.RED_SALT);
-        ambientStoneBlockST(ModBlocks.WINE_SALT);
-        ambientStoneBlockST(ModBlocks.ROSE_SALT);
+        crossBlock(DRCBlocks.RED_BIG_CRYSTAL);
+        blockWithItem(DRCBlocks.MOD_PORTAL);
+        blockWithItem(DRCBlocks.DARK_MAGMA_CORE_BLOCK);
+        blockWithItem(DRCBlocks.MAGMA_CORE_BLOCK);
+        blockWithItem(DRCBlocks.SAND_BLASED_STONE);
+        blockWithItem(DRCBlocks.YL_SAND_BLASED_STONE);
+        blockWithItem(DRCBlocks.RADIATED_STONE);
+        blockWithItem(DRCBlocks.GLACIAL_STONE);
+        blockWithItem(DRCBlocks.AZURE_STONE);
+        blockWithItem(DRCBlocks.HOLLOW_BOUGH_STONE);
+        blockWithItem(DRCBlocks.CRYSTALLINE_STONE);
+        blockWithItem(DRCBlocks.WHITE_CRYSTALLINE_STONE);
+        blockWithItem(DRCBlocks.FUNGUS_STONE);
+        ambientStoneBlockST(DRCBlocks.BIOZONE_STONE);
+        ambientStoneBlockST(DRCBlocks.RED_SALT);
+        ambientStoneBlockST(DRCBlocks.WINE_SALT);
+        ambientStoneBlockST(DRCBlocks.ROSE_SALT);
     }
     private String name(Block block) {
         return key(block).getPath();

@@ -1,6 +1,6 @@
 package dev.stormgrizli.deeprockcraft.worldgen.portal;
 
-import dev.stormgrizli.deeprockcraft.block.ModBlocks;
+import dev.stormgrizli.deeprockcraft.registries.DRCBlocks;
 import dev.stormgrizli.deeprockcraft.block.custom.ModPortalBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -11,11 +11,11 @@ import net.minecraftforge.common.util.ITeleporter;
 
 import java.util.function.Function;
 
-public class ModTeleporter implements ITeleporter {
+public class TemporalTeleporter implements ITeleporter {
     public static BlockPos thisPos = BlockPos.ZERO;
     public static boolean insideDimension = true;
 
-    public ModTeleporter(BlockPos pos, boolean insideDim) {
+    public TemporalTeleporter(BlockPos pos, boolean insideDim) {
         thisPos = pos;
         insideDimension = insideDim;
     }
@@ -53,7 +53,7 @@ public class ModTeleporter implements ITeleporter {
                 }
             }
             if (doSetBlock) {
-                destinationWorld.setBlock(destinationPos, ModBlocks.MOD_PORTAL.get().defaultBlockState(), 3);
+                destinationWorld.setBlock(destinationPos, DRCBlocks.MOD_PORTAL.get().defaultBlockState(), 3);
             }
         }
 

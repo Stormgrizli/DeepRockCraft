@@ -3,8 +3,8 @@
   "downfall": 0.0,
   "effects": {
     "fog_color": 5680072,
-    "foliage_color": 5680072,
-    "grass_color": 5680072,
+    "foliage_color": 5728658,
+    "grass_color": 5728658,
     "sky_color": 1186057,
     "water_color": 342306,
     "water_fog_color": 332810
@@ -22,7 +22,7 @@
     [],
     [],
     [
-      "deeprockcraft:nitra_block"
+      "deeprockcraft:spike_crystal"
     ]
   ],
   "has_precipitation": false,
