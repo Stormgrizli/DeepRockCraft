@@ -2,7 +2,7 @@ package dev.stormgrizli.deeprockcraft.worldgen;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
 import dev.stormgrizli.deeprockcraft.registries.DRCBlocks;
-import dev.stormgrizli.deeprockcraft.worldgen.biome.DRCBiomes;
+import dev.stormgrizli.deeprockcraft.registries.DRCTags;
 import dev.stormgrizli.deeprockcraft.worldgen.features.Spikecfg;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -18,20 +18,18 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
 public class DRCConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DRC_NITRA_BLOCK_KEY = registerKey("nitra_block");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_SALT_PITS_FLOOR = registerKey("crystal_floor");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_FLOOR = registerKey("crystal_floor");
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-      RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
-      RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-      List<OreConfiguration.TargetBlockState> drcNitraOres = List.of(OreConfiguration.target(stoneReplaceable, DRCBlocks.NITRA_BLOCK.get().defaultBlockState()), OreConfiguration.target(deepslateReplaceables, DRCBlocks.NITRA_BLOCK.get().defaultBlockState()));register(context, DRC_NITRA_BLOCK_KEY, Feature.ORE, new OreConfiguration(drcNitraOres, 9));
-        FeatureUtils.register(context, CRYSTAL_SALT_PITS_FLOOR, DRCFeature.CRYSTAL_SPIKE.get(), new Spikecfg(UniformInt.of(4, 7), CaveSurface.FLOOR, 0.25F));
+      RuleTest nitra = new TagMatchTest(DRCTags.Blocks.NITRA_REPLACEABLE);
+      List<OreConfiguration.TargetBlockState> drcNitraOres = List.of(OreConfiguration.target(nitra, DRCBlocks.NITRA_BLOCK.get().defaultBlockState()));register(context, DRC_NITRA_BLOCK_KEY, Feature.ORE, new OreConfiguration(drcNitraOres, 10));
+        register(context, CRYSTAL_SPIKE_FLOOR, DRCFeature.CRYSTAL_SPIKE.get(), new Spikecfg(UniformInt.of(2, 5), CaveSurface.FLOOR));
     }
 
 

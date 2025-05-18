@@ -1,7 +1,6 @@
 package dev.stormgrizli.deeprockcraft.registries;
 
 import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
-import dev.stormgrizli.deeprockcraft.block.custom.CrystalsBlock;
 import dev.stormgrizli.deeprockcraft.block.custom.ModPortalBlock;
 import dev.stormgrizli.deeprockcraft.block.custom.NitraBlock;
 import net.minecraft.world.item.BlockItem;
@@ -66,6 +65,4 @@ public class DRCBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> RED_BIG_CRYSTAL = registerBlock("red_big_crystal",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.POINTED_DRIPSTONE).noLootTable()));
-    public static final RegistryObject<Block> CRYSTALS_BLOCK = registerBlock("crystals_block",
-            () -> new CrystalsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noLootTable().noOcclusion().noCollission()));
 }

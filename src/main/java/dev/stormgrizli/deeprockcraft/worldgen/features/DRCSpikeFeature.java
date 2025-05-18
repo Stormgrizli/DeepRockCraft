@@ -7,6 +7,7 @@ import dev.stormgrizli.deeprockcraft.worldgen.biome.DRCBiomes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -40,7 +41,7 @@ public class DRCSpikeFeature extends Feature<Spikecfg> {
         boolean flag = false;
         int radiusCheck = config.xzRadius().sample(random) + 1;
         final int randomChance = random.nextInt(4);
-        final int stepHeight = radiusCheck + 14 + Mth.nextInt(random, 6, 10);
+        final int stepHeight = radiusCheck + 14 + Mth.nextInt(random, 10, 14);
         if (world.isStateAtPosition(blockPos.relative(config.crystal_direction().getDirection().getOpposite()), DripstoneUtils::isEmptyOrWaterOrLava) && world.getBlockState(blockPos).is(BlockTags.BASE_STONE_OVERWORLD)) {
             if (this.placeSpike(world, blockPos, radiusCheck, stepHeight, randomChance, trigList, config.crystal_direction().getDirection(), random)) {
                 flag = placeCrystals(world, config, trigList, flag);
@@ -49,24 +50,32 @@ public class DRCSpikeFeature extends Feature<Spikecfg> {
         return flag;
     }
 
-    public static final Map<Supplier<Holder<Biome>>,BlockState> blockStateMap = Map.of(
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.SALT_PITS).get(), DRCBlocks.RED_SALT.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.CRYSTALLINE_CAVERNS).get(), DRCBlocks.CRYSTALLINE_STONE.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.GLACIAL_STRATA).get(), DRCBlocks.GLACIAL_STONE.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.AZURE_WEALD).get(), DRCBlocks.AZURE_STONE.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.DENSE_BIOZONE).get(), DRCBlocks.BIOZONE_STONE.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.FUNGUS_BOGS).get(), DRCBlocks.FUNGUS_STONE.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.SANDBLASED_CORRIDORS).get(), DRCBlocks.SAND_BLASED_STONE.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.HOLLOW_BOUGH).get(), DRCBlocks.HOLLOW_BOUGH_STONE.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.MAGMA_CORE).get(), DRCBlocks.DARK_MAGMA_CORE_BLOCK.get().defaultBlockState(),
-            () -> ForgeRegistries.BIOMES.getHolder(DRCBiomes.RADIOACTIVE_EXCLUSION_ZONE).get(), DRCBlocks.RADIATED_STONE.get().defaultBlockState()
+
+    public static final Map<ResourceKey<Biome>,BlockState> blockStateMap = Map.of(
+            DRCBiomes.SALT_PITS, DRCBlocks.RED_SALT.get().defaultBlockState(),
+            DRCBiomes.CRYSTALLINE_CAVERNS, DRCBlocks.CRYSTALLINE_STONE.get().defaultBlockState(),
+            DRCBiomes.GLACIAL_STRATA, DRCBlocks.GLACIAL_STONE.get().defaultBlockState(),
+            DRCBiomes.AZURE_WEALD, DRCBlocks.AZURE_STONE.get().defaultBlockState(),
+            DRCBiomes.DENSE_BIOZONE, DRCBlocks.BIOZONE_STONE.get().defaultBlockState(),
+            DRCBiomes.FUNGUS_BOGS, DRCBlocks.FUNGUS_STONE.get().defaultBlockState(),
+            DRCBiomes.SANDBLASED_CORRIDORS, DRCBlocks.SAND_BLASED_STONE.get().defaultBlockState(),
+            DRCBiomes.HOLLOW_BOUGH, DRCBlocks.HOLLOW_BOUGH_STONE.get().defaultBlockState(),
+            DRCBiomes.MAGMA_CORE, DRCBlocks.DARK_MAGMA_CORE_BLOCK.get().defaultBlockState(),
+            DRCBiomes.RADIOACTIVE_EXCLUSION_ZONE, DRCBlocks.RADIATED_STONE.get().defaultBlockState()
     );
 
     private boolean placeCrystals(WorldGenLevel world, Spikecfg config, HashSet<BlockPos> trigList, boolean flag) {
         for (BlockPos pos : trigList) {
             if (world.isStateAtPosition(pos, DripstoneUtils::isEmptyOrWaterOrLava)) {
-                Supplier<Holder<Biome>> LambDA = () -> world.getBiome(pos);
-                this.setBlock(world, pos, blockStateMap.get(LambDA));
+                // Получаем ключ биома из текущей позиции
+                ResourceKey<Biome> biomeKey = world.getBiome(pos).unwrapKey().orElse(null);
+
+                // Ищем соответствующий блок в мапе
+                BlockState state = biomeKey != null
+                        ? blockStateMap.getOrDefault(biomeKey, Blocks.STONE.defaultBlockState())
+                        : Blocks.STONE.defaultBlockState();
+
+                this.setBlock(world, pos, state);
                 flag = true;
             }
         }

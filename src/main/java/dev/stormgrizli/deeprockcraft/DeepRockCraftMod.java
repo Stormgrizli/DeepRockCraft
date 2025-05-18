@@ -2,6 +2,8 @@ package dev.stormgrizli.deeprockcraft;
 
 
 import com.mojang.logging.LogUtils;
+import dev.stormgrizli.deeprockcraft.event.DRCEventBusClientEvents;
+import dev.stormgrizli.deeprockcraft.event.DRCEventBusEvents;
 import dev.stormgrizli.deeprockcraft.registries.*;
 import dev.stormgrizli.deeprockcraft.worldgen.DRCFeature;
 import dev.stormgrizli.deeprockcraft.worldgen.DRCPlacedFeatures;
@@ -31,7 +33,6 @@ public class DeepRockCraftMod {
         DRCBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         DRCCreativeTab.CREATIVE_TAB.register(modEventBus);
         DRCEntities.ENTITY_TYPES.register(modEventBus);
-//        GEnchantments.ENCHANTMENTS.register(modEventBus);
         DRCFeature.FEATURES.register(modEventBus);
         DRCItems.ITEMS.register(modEventBus);
 //        GMobEffects.MOB_EFFECTS.register(modEventBus);
@@ -45,8 +46,8 @@ public class DeepRockCraftMod {
 //        GSoundEvents.SOUND_EVENTS.register(modEventBus);
 
         eventBus.register(this);
-//        eventBus.register(new MobEvents());
-//        eventBus.register(new MiscEvents());
+        eventBus.register(new DRCEventBusEvents());
+        eventBus.register(new DRCEventBusClientEvents());
 
     }
 

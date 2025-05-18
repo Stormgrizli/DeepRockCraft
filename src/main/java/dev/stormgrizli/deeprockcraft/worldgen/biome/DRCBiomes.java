@@ -6,7 +6,6 @@ import dev.stormgrizli.deeprockcraft.DeepRockCraftMod;
 import dev.stormgrizli.deeprockcraft.worldgen.DRCPlacedFeatures;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -31,17 +30,11 @@ public class DRCBiomes {
     public static final ResourceKey<Biome> FUNGUS_BOGS = ResourceKey.create(Registries.BIOME,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "fungus_bogs"));
     public static final ResourceKey<Biome> HOLLOW_BOUGH = ResourceKey.create(Registries.BIOME,
-            new ResourceLocation(DeepRockCraftMod.MOD_ID, "hoolow_bough"));
+            new ResourceLocation(DeepRockCraftMod.MOD_ID, "hollow_bough"));
     public static final ResourceKey<Biome> DENSE_BIOZONE = ResourceKey.create(Registries.BIOME,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "dense_biozone"));
     public static final ResourceKey<Biome> GLACIAL_STRATA = ResourceKey.create(Registries.BIOME,
             new ResourceLocation(DeepRockCraftMod.MOD_ID, "glacial_strata"));
-
-
-    public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
-        BiomeDefaultFeatures.addDefaultCarversAndLakes(builder);
-        BiomeDefaultFeatures.addDefaultSprings(builder);
-    }
 
     public static void bootstrap(BootstapContext<Biome> context) {
         HolderGetter<PlacedFeature> featureGetter = context.lookup(Registries.PLACED_FEATURE);
@@ -177,13 +170,12 @@ public class DRCBiomes {
     }
     private static BiomeGenerationSettings.Builder addOresAndCaves(BiomeGenerationSettings.Builder builder) {
         return builder
-               // .addCarver(GenerationStep.Carving.AIR, UGConfiguredCarvers.UNDERGARDEN_CAVE)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, DRCPlacedFeatures.NITRA_BLOCK_PLACED_KEY)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DRCPlacedFeatures.SPIKE_CRYSTAL);
     }
-    private static BiomeSpecialEffects.Builder addMusicAndAmbience(BiomeSpecialEffects.Builder builder) {
-        return addMusicAndAmbience(builder);
-    }
+//    private static BiomeSpecialEffects.Builder addMusicAndAmbience(BiomeSpecialEffects.Builder builder) {
+//        return addMusicAndAmbience(builder);
+//    }
 
     public static BiomeSource buildBiomeSource(HolderGetter<Biome> biomes) {
         return MultiNoiseBiomeSource.createFromList(new Climate.ParameterList<>(ImmutableList.of(
